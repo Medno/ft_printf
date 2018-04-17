@@ -1,25 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_ischar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/17 19:03:30 by pchadeni         ###   ########.fr       */
+/*   Created: 2018/01/23 10:53:29 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/01/23 10:53:32 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_isalnum(int c)
 {
-	va_list		ap;
-	t_struct	param;
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (1);
+	return (0);
+}
 
-	va_start(ap, format);
-	parser(format, ap, &param);
-	va_end(ap);
-	print_flag(param);
-	return (param.len);
+int	ft_isalpha(int c)
+{
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
+}
+
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
+}
+
+int	ft_isdigit(int a)
+{
+	if (a >= 48 && a <= 57)
+		return (1);
+	return (0);
+}
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }

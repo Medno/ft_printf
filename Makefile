@@ -14,8 +14,13 @@
 
 AR = ar rc
 CC = gcc
-C_FLAGS = -Wall -Wextra -Werror
 
+# flags
+C_FLAGS = -Wall -Wextra
+
+ifneq ($(NOERR),yes)
+FLAGS += -Werror
+endif
 #------Name of the project------#
 
 NAME = libftprintf.a
@@ -25,6 +30,8 @@ NAME = libftprintf.a
 SRCS = ft_printf.c	\
 	   struct.c		\
 	   parser.c		\
+	   print_flags.c	\
+	   ft_ischar.c	\
 	   ft_put.c		\
 	   ft_strlen.c
 

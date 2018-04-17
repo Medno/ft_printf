@@ -33,9 +33,14 @@ typedef struct	s_struct
 
 int				ft_printf(const char *format, ...);
 void			ft_putstr(const char *s);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
 void			ft_putnstr(const char *s, size_t len);
 size_t			ft_strlen(const char *s);
+int				ft_isdigit(int a);
+int				ft_isalpha(int c);
 
 void			parser(const char *f, va_list va, t_struct *s);
-
+//todel
+void	print_flag(t_struct s);
 #endif
