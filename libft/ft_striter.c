@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2017/11/08 17:50:46 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/01/23 11:43:09 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	va_list		ap;
-	t_struct	param;
+	if (s && f)
+		while (*s)
+			(*f)(s++);
+}
 
-	va_start(ap, format);
-	init_struct(&param);
-	parser(format, ap, &param);
-	va_end(ap);
-	//print_flag(param);
-	ft_putstr(param.str);
-	ft_strdel(&(param.str));
-	return (param.len);
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int i;
+
+	i = 0;
+	if (s && f)
+	{
+		while (s[i])
+		{
+			(*f)(i, s + i);
+			i++;
+		}
+	}
 }

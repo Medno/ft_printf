@@ -57,6 +57,15 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 	(*i)++;
 }
 
+void	put_in_struct(const char *f, int i, t_struct *s)
+{
+	char buf[i + 1];
+
+	ft_bzero(buf, i + 1);
+	ft_strncat(buf, f, i);
+	s->str = ft_strjoindel(s->str, buf);
+}
+
 void	parser(const char *format, va_list ap, t_struct *s)
 {
 	int	i;
@@ -66,7 +75,8 @@ void	parser(const char *format, va_list ap, t_struct *s)
 	{
 		if (format[i] == '%')
 		{
-			ft_putnstr(format, i);
+			put_in_struct(format, i, s);
+//			ft_putnstr(format, i);
 			s->len += i;
 			treat_format(format, &i, s, ap);
 			format += i;
@@ -75,6 +85,6 @@ void	parser(const char *format, va_list ap, t_struct *s)
 		else
 			i++;
 	}
-	ft_putnstr(format, i);
+	s->str = ft_strjoindel(s->str, (char *)format);
 	s->len += i;
 }

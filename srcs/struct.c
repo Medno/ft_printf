@@ -19,4 +19,5 @@ void	init_struct(t_struct *s)
 	s->len_field = 0;
 	s->len_modif = 0;
 	s->len = 0;
+	s->str = ft_strdup("");
 }

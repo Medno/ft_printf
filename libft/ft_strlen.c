@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2017/11/07 15:22:21 by pchadeni          #+#    #+#             */
+/*   Updated: 2017/11/25 11:48:31 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+size_t	ft_strlen(const char *s)
 {
-	va_list		ap;
-	t_struct	param;
+	int	i;
 
-	va_start(ap, format);
-	init_struct(&param);
-	parser(format, ap, &param);
-	va_end(ap);
-	//print_flag(param);
-	ft_putstr(param.str);
-	ft_strdel(&(param.str));
-	return (param.len);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_nbwords.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2018/01/09 15:02:33 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/01/09 15:53:40 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int			ft_nbwords(char *str)
 {
-	va_list		ap;
-	t_struct	param;
+	int	res;
+	int	i;
 
-	va_start(ap, format);
-	init_struct(&param);
-	parser(format, ap, &param);
-	va_end(ap);
-	//print_flag(param);
-	ft_putstr(param.str);
-	ft_strdel(&(param.str));
-	return (param.len);
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		if (!ft_iswsp(str[i]))
+		{
+			res++;
+			while (str[i] && !ft_iswsp(str[i]))
+				i++;
+		}
+		else
+			i++;
+	}
+	return (res);
 }

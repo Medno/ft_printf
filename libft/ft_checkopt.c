@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_checkopt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 15:22:21 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/17 17:37:49 by pchadeni         ###   ########.fr       */
+/*   Created: 2018/01/16 17:26:40 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/01/16 18:03:15 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_checkopt(char *p, char *str, int nb_opt)
 {
-	int	i;
+	char	valid[nb_opt];
+	int		i;
 
 	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	if (p)
+	{
+		ft_strcpy(valid, str);
+		while (p[i])
+		{
+			if (!ft_strchr(valid, p[i]))
+				return (p[i]);
+			i++;
+		}
+		return (0);
+	}
+	return (0);
 }

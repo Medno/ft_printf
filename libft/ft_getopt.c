@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_getopt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2018/01/15 11:42:52 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/01/15 16:27:07 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_getopt(char **cmd, int *i)
 {
-	va_list		ap;
-	t_struct	param;
+	char	*param;
 
-	va_start(ap, format);
-	init_struct(&param);
-	parser(format, ap, &param);
-	va_end(ap);
-	//print_flag(param);
-	ft_putstr(param.str);
-	ft_strdel(&(param.str));
-	return (param.len);
+	if (!(param = ft_strdup("")))
+		return (NULL);
+	while (cmd[*i] && cmd[*i][0] == '-' && ft_strlen(cmd[*i]) != 1)
+	{
+		param = ft_onejoinf(param, &cmd[*i][1]);
+		(*i)++;
+		if (cmd[*i] && ft_strcmp(cmd[*i], "--") == 0)
+			if ((*i)++)
+				break ;
+	}
+	if (param[0] == '\0')
+		ft_strdel(&param);
+	return (param);
 }

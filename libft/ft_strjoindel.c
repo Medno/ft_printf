@@ -1,48 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ischar.c                                        :+:      :+:    :+:   */
+/*   ft_strjoindel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 10:53:29 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/01/23 10:53:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2018/02/28 13:45:09 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/03/12 14:13:01 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_isalnum(int c)
+char	*ft_strjoindel(char *s1, char *s2)
 {
-	if (ft_isdigit(c) || ft_isalpha(c))
-		return (1);
-	return (0);
-}
+	char	*tmp;
 
-int	ft_isalpha(int c)
-{
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
-}
-
-int	ft_isascii(int c)
-{
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
-}
-
-int	ft_isdigit(int a)
-{
-	if (a >= 48 && a <= 57)
-		return (1);
-	return (0);
-}
-
-int	ft_isprint(int c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	if (s1 && s2)
+	{
+		if ((tmp = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+		{
+			tmp = ft_strcat(tmp, s1);
+			tmp = ft_strcat(tmp, s2);
+			ft_strdel(&s1);
+			return (tmp);
+		}
+	}
+	else if (s1)
+		return (s1);
+	return (NULL);
 }

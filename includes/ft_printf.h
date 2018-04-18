@@ -15,6 +15,8 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include "../libft/libft.h"
 
 # define F_HASHTAG	1
 # define F_ZERO		2
@@ -37,6 +39,7 @@ typedef struct	s_struct
 	int		len_field;
 	int		len_modif;
 	int		len;
+	char	*str;
 }				t_struct;
 
 int				ft_printf(const char *format, ...);
@@ -45,15 +48,7 @@ t_struct		*field_preci(const char *format, int *i, t_struct *s);
 t_struct		*check_flags(const char *format, int *i, t_struct *s);
 void			init_struct(t_struct *s);
 void			display_str(t_struct *s, va_list ap);
-
-void			ft_putstr(const char *s);
-void	ft_putchar(char c);
-void	ft_putnbr(int n);
-void			ft_putnstr(const char *s, size_t len);
-size_t			ft_strlen(const char *s);
-int				ft_isdigit(int a);
-int				ft_isalpha(int c);
-char			*ft_strchr(const char *s, int c);
+void			put_in_struct(const char *f, int i, t_struct *s);
 
 //todel
 void	print_flag(t_struct s);

@@ -6,11 +6,11 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:04:24 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/17 19:04:33 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/01/23 13:22:32 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_putchar(char c)
 {

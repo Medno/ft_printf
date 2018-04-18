@@ -17,21 +17,24 @@ void	display_flag(t_struct *s, char conv, int pos)
 	if (s->flags & F_HASHTAG && conv == 'o' && s->len)
 	{
 		s->len++;
-		ft_putchar('0');
+		ft_strjoindel(s->str, "0");
 	}
 	if (s->flags & F_HASHTAG && (conv == 'x' || conv == 'X'))
 	{
 		s->len += 2;
-		(conv == 'x') ? ft_putstr("0x") : ft_putstr("0X");
+		(conv == 'x') ? ft_strjoindel(s->str, "0x") :
+			ft_strjoindel(s->str, "0X");
 	}
 	if (s->flags & F_PLUS && pos && s->len++)
-		ft_putchar('+');
+		ft_strjoindel(s->str, "+");
+	else if (s->flags & F_PLUS && !pos && s->len++)
+		ft_strjoindel(s->str, "-");
 	if (!(s->flags & F_PLUS) && !(s->flags & F_MINUS) && (s->flags & F_SPACE)
 			&& pos && s->len++)
-		ft_putchar(' ');
+		ft_strjoindel(s->str, " ");
 }
 
-void	display_field(int len_tmp, char to_print)
+void	display_field(t_struct *s, int len_tmp, char to_print)
 {
 	char	buf[len_tmp + 1];
 	int		i;
@@ -43,7 +46,7 @@ void	display_field(int len_tmp, char to_print)
 		i++;
 	}
 	buf[i] = '\0';
-	ft_putstr(buf);
+	s->str = ft_strjoindel(s->str, buf);
 }
 
 int		ft_max(int a, int b)
@@ -64,9 +67,9 @@ void	display_sp(t_struct *s, int len_tmp, int minus)
 		to_print = '0';
 	len = (s->precision == -1) ? len_tmp : s->precision;
 	if (len < s->len_field)
-		display_field(s->len_field - len, to_print);
-	res_prec = (s->precision != -1 && s->precision < len_tmp) ? s->precision :
-		len_tmp;
+		display_field(s, s->len_field - len, to_print);
+	res_prec = (s->precision != -1 && s->precision < len_tmp) ?
+		s->precision : len_tmp;
 	s->len += ft_max(s->len_field, res_prec);
 }
 
@@ -79,8 +82,10 @@ void	display_str(t_struct *s, va_list ap)
 	len_tmp = ft_strlen(tmp);
 	if (!(s->flags & F_MINUS))
 		display_sp(s, len_tmp, 0);
-	(s->precision != -1 && s->precision <= len_tmp) ?
-		ft_putnstr(tmp, s->precision) : ft_putstr(tmp);
+	if (s->precision != -1 && s->precision <= len_tmp)
+		put_in_struct(tmp, s->precision, s);
+	else
+		s->str = ft_strjoindel(s->str, tmp);
 	if (s->flags & F_MINUS)
 		display_sp(s, len_tmp, 1);
 }
