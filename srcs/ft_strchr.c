@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Created: 2017/11/07 17:03:54 by pchadeni          #+#    #+#             */
+/*   Updated: 2018/04/18 11:41:07 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_strchr(const char *s, int c)
 {
-	va_list		ap;
-	t_struct	param;
+	char	*tmp;
 
-	va_start(ap, format);
-	init_struct(&param);
-	parser(format, ap, &param);
-	va_end(ap);
-	//print_flag(param);
-	return (param.len);
+	tmp = (char *)s;
+	while (*tmp)
+	{
+		if (*tmp == c)
+			return (tmp);
+		tmp++;
+	}
+	if (*tmp == '\0' && c == '\0')
+		return (tmp);
+	return (NULL);
 }

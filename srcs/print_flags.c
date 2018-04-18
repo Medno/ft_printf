@@ -12,11 +12,24 @@ void	print_flag(t_struct s)
 		ft_putstr("Space dans les flags\n");
 	if (s.flags & F_PLUS)
 		ft_putstr("Plus dans les flags\n");
-	if (s.flags & F_QUOTE)
-		ft_putstr("Quote dans les flags\n");
+//	if (s.flags & F_QUOTE)
+//		ft_putstr("Quote dans les flags\n");
 	if (s.len_field > 0)
 		ft_putnbr(s.len_field);
 	ft_putchar(' ');
 	if (s.precision > 0)
 		ft_putnbr(s.precision);
+	if (s.len_modif == F_HH)
+		ft_putstr("HH detecte");
+	if (s.len_modif == F_H)
+		ft_putstr("H detecte");
+	if (s.len_modif == F_LL)
+		ft_putstr("LL detecte");
+	if (s.len_modif == F_L)
+		ft_putstr("L detecte");
+	if (s.len_modif == F_J)
+		ft_putstr("J detecte");
+	if (s.len_modif == F_Z)
+		ft_putstr("Z detecte");
+
 }

@@ -6,7 +6,7 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/04/17 18:37:13 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/04/18 16:12:17 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,15 @@ NAME = libftprintf.a
 
 #------All sources------#
 
-SRCS = ft_printf.c	\
-	   struct.c		\
-	   parser.c		\
-	   print_flags.c	\
-	   ft_ischar.c	\
-	   ft_put.c		\
+SRCS = ft_printf.c		\
+	   check_flags.c	\
+	   struct.c			\
+	   parser.c			\
+	   display.c		\
+	   print_flags.c		\
+	   ft_ischar.c		\
+	   ft_put.c			\
+	   ft_strchr.c		\
 	   ft_strlen.c
 
 #------Library------#
@@ -58,7 +61,7 @@ all: $(LIB) $(OPATH) $(NAME)
 re: fclean all
 
 $(OPATH)/%.o: $(SRCPATH)/%.c
-	$(CC) $(C_FLAGS) $(INC) -o $@ -c $^
+	@$(CC) $(C_FLAGS) $(INC) -o $@ -c $^
 	@echo " $(COL_GREEN)[OK]$(EOC)    $(COL_YELLOW)Compiling:$(EOC)" $<
 
 $(OPATH):

@@ -3,7 +3,13 @@
 int		main()
 {
 	char *tutu = "bonjour";
-	ft_printf("tutu\n %#0- +'3.01s toto\n", tutu);
+	int	res;
+	res = ft_printf("tutu [%#0 +10.1s] toto\n", tutu);
+	printf("Resultat : [%d]\n", res);
+	res = printf("tutu [%#0 +10.1s] toto\n", tutu);
+	printf("Resultat : [%d]\n", res);
+	int i = 0;
+	int j = 0;
 //	ft_printf("test", tutu);
 //	printf("%1$4s %2$10s %3$10s\n", "obj", "qty", "price");
 //	printf("%1$4s %2$10s %3$10s\n", "----", "----", "-----");
