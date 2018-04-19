@@ -8,8 +8,22 @@ int		main()
 	printf("Resultat : [%d]\n", res);
 	res = printf("tutu [%#0 +10.1s] toto\n", tutu);
 	printf("Resultat : [%d]\n", res);
+	res = ft_printf("Mine [%+d] ", 42);
+	printf("Res : [%d]\n", res);
+	res = printf("Real [%+d] ", 42);
+	printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%x] ", -42);
+	printf("Res : [%d]\n", res);
+	res = printf("Real [%x] ", -42);
+	printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%+d] ", -42);
+	printf("Res : [%d]\n", res);
+	res = printf("Real [%0+#10x] ", -42);
+	res = printf("Real [%0+#10x] ", -0);
+	printf("Res : [%d]\n", res);
 	int i = 0;
 	int j = 0;
+
 //	ft_printf("test", tutu);
 //	printf("%1$4s %2$10s %3$10s\n", "obj", "qty", "price");
 //	printf("%1$4s %2$10s %3$10s\n", "----", "----", "-----");

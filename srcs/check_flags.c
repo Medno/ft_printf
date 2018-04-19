@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 10:33:59 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 14:45:46 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/19 10:37:53 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ static t_struct	*check_field(const char *format, int *i, t_struct *s, int tmp)
 
 t_struct		*check_lenmod(const char *f, int *i, t_struct *s)
 {
-	if (f[*i] && f[*i] == 'h' && s->len_modif < F_H)
-		s->len_modif = ((*i)++ && f[*i] && f[*i] == 'h') ? F_HH : F_H;
-	if (f[*i] && f[*i] == 'l' && s->len_modif < F_LL)
-		s->len_modif = ((*i)++ && f[*i] && f[*i] == 'l') ? F_LL : F_L;
-	if (f[*i] && f[*i] == 'j' && s->len_modif < F_J)
-		s->len_modif = F_J;
-	if (f[*i] && f[*i] == 'z' && s->len_modif < F_J)
-		s->len_modif = F_Z;
+	if (f[*i] && f[*i] == 'h' && s->modif < F_H)
+		s->modif = ((*i)++ && f[*i] && f[*i] == 'h') ? F_HH : F_H;
+	if (f[*i] && f[*i] == 'l' && s->modif < F_LL)
+		s->modif = ((*i)++ && f[*i] && f[*i] == 'l') ? F_LL : F_L;
+	if (f[*i] && f[*i] == 'j' && s->modif < F_J)
+		s->modif = F_J;
+	if (f[*i] && f[*i] == 'z' && s->modif < F_J)
+		s->modif = F_Z;
 	return (s);
 }
 

@@ -19,17 +19,17 @@ void	print_flag(t_struct s)
 	ft_putchar(' ');
 	if (s.precision > 0)
 		ft_putnbr(s.precision);
-	if (s.len_modif == F_HH)
+	if (s.modif == F_HH)
 		ft_putstr("HH detecte");
-	if (s.len_modif == F_H)
+	if (s.modif == F_H)
 		ft_putstr("H detecte");
-	if (s.len_modif == F_LL)
+	if (s.modif == F_LL)
 		ft_putstr("LL detecte");
-	if (s.len_modif == F_L)
+	if (s.modif == F_L)
 		ft_putstr("L detecte");
-	if (s.len_modif == F_J)
+	if (s.modif == F_J)
 		ft_putstr("J detecte");
-	if (s.len_modif == F_Z)
+	if (s.modif == F_Z)
 		ft_putstr("Z detecte");
 
 }

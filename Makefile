@@ -6,7 +6,7 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/04/18 16:12:17 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/04/19 11:38:52 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRCS = ft_printf.c		\
 	   struct.c			\
 	   parser.c			\
 	   display.c		\
+	   ft_utoa_base.c	\
+	   ft_itoa_base.c	\
+	   conv_flags.c		\
 	   print_flags.c
 
 #------Library------#

@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 11:51:48 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/01/23 13:33:18 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/19 11:02:17 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*ft_stolower(char *str)
 		tmp[i] = ft_tolower(str[i]);
 		i--;
 	}
+	ft_strdel(&str);
 	return (tmp);
 }
 
