@@ -35,6 +35,7 @@ SRCS = ft_printf.c		\
 	   ft_utoa_base.c	\
 	   ft_itoa_base.c	\
 	   conv_flags.c		\
+	   check_char.c		\
 	   print_flags.c
 
 #------Library------#

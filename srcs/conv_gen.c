@@ -48,10 +48,9 @@ char	*display_digit(t_struct *s, va_list ap, char conv)
 {
 	char *tmp;
 
-	tmp = ft_strdup("");
 	if (conv == 'd' || conv == 'i' || conv == 'D')
-		conv_di(s, ap, conv);
+		tmp = conv_di(s, ap, conv);
 	else
-		conv_ouxx(s, ap, conv);
+		tmp = conv_ouxx(s, ap, conv);
 	return (tmp);
 }

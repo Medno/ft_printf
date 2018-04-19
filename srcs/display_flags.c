@@ -15,22 +15,21 @@
 void	display_flag(t_struct *s, char *str, char conv, int pos)
 {
 	char	*tmp;
-	int		len;
+	char	buf[4];
 
-	tmp = ft_strdup("");
-	len = ft_strlen(str);
+	ft_bzero(buf, 4);
 	if (s->flags & F_HASHTAG && conv == 'o' && str[0] != '0')
-		tmp = ft_strjoindel(tmp, "0");
+		buf = ft_strcat(buf, "0");
 	if (s->flags & F_HASHTAG && (conv == 'x' || conv == 'X'))
 	{
-		tmp = (conv == 'x') ? ft_strjoindel(tmp, "0x") :
-			ft_strjoindel(tmp, "0X");
+		buf = (conv == 'x') ? ft_strcat(buf, "0x") :
+			ft_strcat(buf, "0X");
 	}
-	tmp = (s->flags & F_PLUS && pos) ? ft_strjoindel(tmp, "+") : tmp;
-	tmp = (!pos) ? ft_strjoindel(tmp, "-") : tmp;
+	buf = (s->flags & F_PLUS && pos) ? ft_strcat(buf, "+") : buf;
+	buf = (!pos) ? ft_strcat(buf, "-") : buf;
 	if (!(s->flags & F_PLUS) && !(s->flags & F_MINUS) && (s->flags & F_SPACE)
 			&& pos)
-		tmp = ft_strjoindel(tmp, " ");
+		buf = ft_strcat(buf, " ");
 	tmp = ft_strjoindel(tmp, str);
 }
 

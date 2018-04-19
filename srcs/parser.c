@@ -12,39 +12,18 @@
 
 #include "ft_printf.h"
 
-int		digit_conv(char c)
-{
-	if (ft_strchr("dDoOuUixX", c))
-		return (1);
-	return (0);
-}
-
 t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 {
 	char	*tmp;
 
-	tmp = ft_strdup("");
 	if (f[*i] == 's')
 		tmp = display_str(s, ap, tmp);
 	if (digit_conv(f[*i]))
 		tmp = display_digit(s, ap, tmp, f[*i]);
-	s->str = ft_strjoindel(tmp, s->str);
+	s->str = ft_strjoindel(s->str, tmp);
 	s->len += ft_strlen(tmp);
+	ft_strdel(&tmp);
 	return (s);
-}
-
-int		is_flag(char c)
-{
-	if (ft_strchr("#0- +.hljz", c))
-		return (1);
-	return (0);
-}
-
-int		is_convert(char c)
-{
-	if (ft_strchr("sSpdDioOuUxXcC", c))
-		return (1);
-	return (0);
 }
 
 void	treat_format(const char *format, int *i, t_struct *s, va_list ap)

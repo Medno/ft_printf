@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*final_digit(t_struct *s, char *t, int sign)
+char	*final_digit(t_struct *s, char *t, int sign, char c)
 {
 	char	*tmp;
 	int		to_add;
@@ -24,7 +24,7 @@ char	*final_digit(t_struct *s, char *t, int sign)
 		to_add = display_sp(s, len);
 }
 
-void	conv_di(t_struct *s, va_list ap, char c)
+char	*conv_di(t_struct *s, va_list ap, char c)
 {
 	intmax_t	res;
 	char		*tmp;
@@ -44,12 +44,10 @@ void	conv_di(t_struct *s, va_list ap, char c)
 	else
 		sign = (res < 0) ? -1 : 0;
 	tmp = final_digit();
-	s->str = ft_strjoindel(s->str, tmp);
-	s->len += ft_strlen(tmp);
-	ft_strdel(&tmp);
+	return (tmp);
 }
 
-void	conv_ouxx(t_struct *s, va_list ap, char c)
+char	*conv_ouxx(t_struct *s, va_list ap, char c)
 {
 	uintmax_t	res;
 	char		*tmp;
@@ -68,7 +66,5 @@ void	conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_itoa_base(res, 8);
 	if (c == 'x')
 		tmp = ft_stolower(tmp);
-	s->str = ft_strjoindel(s->str, tmp);
-	s->len += ft_strlen(tmp);
-	ft_strdel(&tmp);
+	return (tmp);
 }

@@ -59,6 +59,10 @@ void			conv_ouxx(t_struct *s, va_list ap, char c);
 int				nb_char_u(uintmax_t n, int base);
 int				nb_char(intmax_t n, int base);
 
+int				is_convert(char c);
+int				is_flag(char c);
+int				digit_conv(char c);
+
 //todel
 void	print_flag(t_struct s);
 #endif
