@@ -6,7 +6,7 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/04/19 11:38:52 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/04/20 11:34:58 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,12 @@ SRCS = ft_printf.c		\
 	   check_flags.c	\
 	   struct.c			\
 	   parser.c			\
-	   display.c		\
+	   display_flags.c	\
 	   ft_utoa_base.c	\
 	   ft_itoa_base.c	\
 	   conv_flags.c		\
 	   check_char.c		\
+	   conv_gen.c		\
 	   print_flags.c
 
 #------Library------#
@@ -100,6 +101,14 @@ LIB_FILES = ft_atoi.c \
 OBJP += $(addprefix $(LIB_PATH)/, $(LIB_FILES:.c=.o))
 OBJP += $(addprefix $(OPATH)/, $(SRCS:.c=.o))
 
+ifeq ($(DEV),yes)
+	FLAGS += -g
+endif
+
+ifeq ($(SAN),yes)
+	FLAGS += -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+endif
+
 #------Main rules------#
 
 all: c_lib $(OPATH) $(NAME)
@@ -107,7 +116,7 @@ all: c_lib $(OPATH) $(NAME)
 re: fclean all
 
 $(OPATH)/%.o: $(SRCPATH)/%.c
-	@$(CC) $(C_FLAGS) $(INC) -o $@ -c $^
+	@$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $^
 	@echo " $(COL_GREEN)[OK]$(EOC)    $(COL_YELLOW)Compiling:$(EOC)" $<
 
 $(OPATH):
@@ -132,7 +141,7 @@ fclean: clean
 #############################################################################
 #ARETIRER
 main: $(NAME)
-	$(CC) main.c $(NAME) -o SORTIE
+	$(CC) $(FLAGS) main.c $(NAME) -o SORTIE
 
 #------Compilation of Libft------#
 

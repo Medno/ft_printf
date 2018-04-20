@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 11:10:25 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/01/23 11:05:38 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/20 10:39:52 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char			*ft_strfchr(char *str, char c);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 char			*ft_strdup(const char *s1);
+char			*ft_strndup(const char *s1, size_t len);
 char			*ft_strgap(char *str, char delim, int pos);
 char			*ft_strlgap(char *str, char delim, int pos);
 char			*ft_strjoin(char const *s1, char const *s2);

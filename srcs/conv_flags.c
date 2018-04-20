@@ -6,22 +6,32 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/19 15:55:21 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/20 15:57:29 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#   include <stdio.h>
 char	*final_digit(t_struct *s, char *t, int sign, char c)
 {
 	char	*tmp;
-	int		to_add;
+	char	*last;
 	int		len;
+	char	*field;
 
-	len = ft_strlen(t);
-	tmp = ft_strdup("");
-	if (s->flags & F_ZERO && !(s->flags & F_MINUS))
-		to_add = display_sp(s, len);
+	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
+	field = NULL;
+	if (sign == -1)
+		field = display_sp(s, len);
+	if (!(s->flags & F_MINUS) && field)
+		last = ft_strjoin(field, t);
+	else
+		last = ft_strdup(t);
+	last = check_precision(s, last);
+	if ((s->flags & F_MINUS) && field)
+		last = ft_strjoindel(last, field);
+	tmp = display_flag(s, last, c, sign);
+	return (tmp);
 }
 
 char	*conv_di(t_struct *s, va_list ap, char c)
@@ -43,7 +53,7 @@ char	*conv_di(t_struct *s, va_list ap, char c)
 		sign = 1;
 	else
 		sign = (res < 0) ? -1 : 0;
-	tmp = final_digit();
+	tmp = final_digit(s, tmp, sign, c);
 	return (tmp);
 }
 
@@ -66,5 +76,6 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_itoa_base(res, 8);
 	if (c == 'x')
 		tmp = ft_stolower(tmp);
+	tmp = final_digit(s, tmp, 0, c);
 	return (tmp);
 }

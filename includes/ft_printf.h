@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/19 13:57:51 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/20 11:51:10 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ void			parser(const char *f, va_list va, t_struct *s);
 t_struct		*field_preci(const char *format, int *i, t_struct *s);
 t_struct		*check_flags(const char *format, int *i, t_struct *s);
 void			init_struct(t_struct *s);
-void			display_flag(t_struct *s, char *str, char conv, int pos);
-void			display_str(t_struct *s, va_list ap);
-void			display_digit(t_struct *s, va_list ap, char conv);
+char			*display_flag(t_struct *s, char *str, char conv, int pos);
+char			*display_str(t_struct *s, va_list ap);
+char			*display_digit(t_struct *s, va_list ap, char conv);
+char			*display_sp(t_struct *s, int len_tmp);
 void			put_in_struct(const char *f, int i, t_struct *s);
+char			*check_precision(t_struct *s, char *tmp);
 
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_utoa_base(uintmax_t value, int base);
-void			conv_di(t_struct *s, va_list ap, char c);
-void			conv_ouxx(t_struct *s, va_list ap, char c);
+char			*conv_di(t_struct *s, va_list ap, char c);
+char			*conv_ouxx(t_struct *s, va_list ap, char c);
 int				nb_char_u(uintmax_t n, int base);
 int				nb_char(intmax_t n, int base);
 

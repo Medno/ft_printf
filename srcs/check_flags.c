@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 10:33:59 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/19 10:37:53 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/20 15:57:25 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_struct		*check_flags(const char *format, int *i, t_struct *s)
 {
 	if (format[*i] == '#')
 		s->flags |= F_HASHTAG;
-	else if (format[*i] == '0')
+	else if (format[*i] == '0' && (*i)++)
 		s->flags |= F_ZERO;
 	else if (format[*i] == '-')
 		s->flags |= F_MINUS;
@@ -38,6 +38,7 @@ static t_struct	*check_field(const char *format, int *i, t_struct *s, int tmp)
 	expten = 1;
 	while (format[*i] && ft_isdigit(format[*i]))
 	{
+printf("[%c]\n", format[*i]);
 		field = format[*i] - '0' + expten * field;
 		expten *= 10;
 		(*i)++;
@@ -53,9 +54,9 @@ static t_struct	*check_field(const char *format, int *i, t_struct *s, int tmp)
 t_struct		*check_lenmod(const char *f, int *i, t_struct *s)
 {
 	if (f[*i] && f[*i] == 'h' && s->modif < F_H)
-		s->modif = ((*i)++ && f[*i] && f[*i] == 'h') ? F_HH : F_H;
+		s->modif = (f[*i + 1] && f[*i + 1] == 'h' && (*i)++) ? F_HH : F_H;
 	if (f[*i] && f[*i] == 'l' && s->modif < F_LL)
-		s->modif = ((*i)++ && f[*i] && f[*i] == 'l') ? F_LL : F_L;
+		s->modif = (f[*i + 1] && f[*i + 1] == 'l' && (*i)++) ? F_LL : F_L;
 	if (f[*i] && f[*i] == 'j' && s->modif < F_J)
 		s->modif = F_J;
 	if (f[*i] && f[*i] == 'z' && s->modif < F_J)

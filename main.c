@@ -6,7 +6,7 @@ int		main()
 	int	res;
 	res = ft_printf("tutu [%#0 +10.1s] toto\n", tutu);
 	printf("Resultat : [%d]\n", res);
-	res = printf("tutu [%#0 +10.1s] toto\n", tutu);
+//	res = printf("tutu [%#0 +10.1s] toto\n", tutu);
 	printf("Resultat : [%d]\n", res);
 	res = ft_printf("Mine [%+d] ", 42);
 	printf("Res : [%d]\n", res);
@@ -18,8 +18,14 @@ int		main()
 	printf("Res : [%d]\n", res);
 	res = ft_printf("Mine [%+d] ", -42);
 	printf("Res : [%d]\n", res);
-	res = printf("Real [%0+#10x] ", -42);
-	res = printf("Real [%0+#10x] ", -0);
+	res = printf("Real [%+d] ", -42);
+	printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%010#+x] ", -42);
+	printf("Res : [%d]\n", res);
+	res = printf("Real [%010#+x] ", -42);
+	printf("Res : [%d]\n", res);
+//	res = printf("Real [%0+#10x] ", -42);
+//	res = printf("Real [%0+#10x] ", -0);
 	printf("Res : [%d]\n", res);
 	int i = 0;
 	int j = 0;

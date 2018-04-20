@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:21:20 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/19 15:40:33 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/20 14:20:38 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 	char	*tmp;
 
 	if (f[*i] == 's')
-		tmp = display_str(s, ap, tmp);
+		tmp = display_str(s, ap);
 	if (digit_conv(f[*i]))
-		tmp = display_digit(s, ap, tmp, f[*i]);
+		tmp = display_digit(s, ap, f[*i]);
 	s->str = ft_strjoindel(s->str, tmp);
 	s->len += ft_strlen(tmp);
 	ft_strdel(&tmp);
@@ -32,9 +32,10 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 	while (format[*i] && (is_flag(format[*i]) || ft_isdigit(format[*i])))
 	{
 		s = check_flags(format, i, s);
-		s = field_preci(format, i, s);
+		s = (format[*i]) ? field_preci(format, i, s) : s;
 		(*i)++;
 	}
+	print_flag(*s);
 	if (format[*i] && is_convert(format[*i]))
 		s = check_conversion(format, i, s, ap);
 	else if (format[*i])
