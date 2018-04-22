@@ -20,7 +20,7 @@ void		put_in_buffer(char buf[], char c)
 	buf[len] = c;
 }
 
-char	*display_flag(t_struct *s, char *str, char conv, int pos)
+char	*display_hex_oct(t_struct *s, char *str, char conv, int pos)
 {
 	char	buf[4];
 	char	*res;
@@ -28,7 +28,8 @@ char	*display_flag(t_struct *s, char *str, char conv, int pos)
 	ft_bzero(buf, 4);
 	if (s->flags & F_HASHTAG && conv == 'o' && str[0] != '0')
 		put_in_buffer(buf, '0');
-	if (s->flags & F_HASHTAG && (conv == 'x' || conv == 'X'))
+//printf("---buf : [%s]--- ---str : [%s]--- -- conv [%c]--\n", buf, str, conv);
+	if (s->flags & F_HASHTAG && (conv == 'x' || conv == 'X') && str[0] != '0')
 	{
 		put_in_buffer(buf, '0');
 		(conv == 'x') ? put_in_buffer(buf, 'x') : put_in_buffer(buf, 'X');
@@ -39,6 +40,23 @@ char	*display_flag(t_struct *s, char *str, char conv, int pos)
 			&& pos)
 		put_in_buffer(buf, ' ');
 	res = ft_strjoin(buf, str);
+//printf("---buf : [%s]--- ---str : [%s]--- -- conv [%c]--\n", buf, str, conv);
+	return (res);
+}
+
+char	*display_flags(t_struct *s, char *str, int pos)
+{
+	char	buf[4];
+	char	*res;
+
+	ft_bzero(buf, 4);
+	(s->flags & F_PLUS && pos == 1) ? put_in_buffer(buf, '+') : 0;
+	(pos == -1) ? put_in_buffer(buf, '-') : 0;
+	if (!(s->flags & F_PLUS) && !(s->flags & F_MINUS) && (s->flags & F_SPACE)
+			&& pos)
+		put_in_buffer(buf, ' ');
+	res = ft_strjoin(buf, str);
+//printf("---buf : [%s]--- ---str : [%s]--- -- conv [%c]--\n", buf, str, conv);
 	return (res);
 }
 

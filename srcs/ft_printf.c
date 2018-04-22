@@ -22,7 +22,7 @@ int	ft_printf(const char *format, ...)
 	parser(format, ap, &param);
 	va_end(ap);
 	//print_flag(param);
-	ft_putstr(param.str);
+	write(1, param.str, param.len);
 	ft_strdel(&(param.str));
 	return (param.len);
 }

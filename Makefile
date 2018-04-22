@@ -37,6 +37,7 @@ SRCS = ft_printf.c		\
 	   conv_flags.c		\
 	   check_char.c		\
 	   conv_gen.c		\
+	   ft_strzerojoin.c	\
 	   print_flags.c
 
 #------Library------#

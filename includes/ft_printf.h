@@ -47,9 +47,11 @@ void			parser(const char *f, va_list va, t_struct *s);
 t_struct		*field_preci(const char *format, int *i, t_struct *s);
 t_struct		*check_flags(const char *format, int *i, t_struct *s);
 void			init_struct(t_struct *s);
-char			*display_flag(t_struct *s, char *str, char conv, int pos);
+char			*display_flags(t_struct *s, char *str, int pos);
+char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
 char			*display_str(t_struct *s, va_list ap);
 char			*display_digit(t_struct *s, va_list ap, char conv);
+char			*display_char(t_struct *s, va_list ap);
 char			*display_sp(t_struct *s, int len_tmp);
 void			put_in_struct(const char *f, int i, t_struct *s);
 char			*check_precision(t_struct *s, char *tmp);
@@ -65,6 +67,7 @@ int				is_convert(char c);
 int				is_flag(char c);
 int				digit_conv(char c);
 
+char			*ft_strjoinzero(char *s1, char *s2, int len);
 //todel
 void	print_flag(t_struct s);
 #endif

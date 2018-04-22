@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#   include <stdio.h>
+
 char	*final_digit(t_struct *s, char *t, int sign, char c)
 {
 	char	*tmp;
@@ -19,10 +19,13 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	int		len;
 	char	*field;
 
+(void)c;
+(void)sign;
+(void)tmp;
 	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
 	field = NULL;
-	if (sign == -1)
-		field = display_sp(s, len);
+//printf("--\nt : [%s]\n--\n", t);
+	field = display_sp(s, len);
 	if (!(s->flags & F_MINUS) && field)
 		last = ft_strjoin(field, t);
 	else
@@ -30,8 +33,7 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	last = check_precision(s, last);
 	if ((s->flags & F_MINUS) && field)
 		last = ft_strjoindel(last, field);
-	tmp = display_flag(s, last, c, sign);
-	return (tmp);
+	return (last);
 }
 
 char	*conv_di(t_struct *s, va_list ap, char c)
@@ -54,6 +56,7 @@ char	*conv_di(t_struct *s, va_list ap, char c)
 	else
 		sign = (res < 0) ? -1 : 0;
 	tmp = final_digit(s, tmp, sign, c);
+	tmp = display_flags(s, tmp, sign);
 	return (tmp);
 }
 
@@ -70,12 +73,15 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 	res = (s->modif == F_J) ? (uintmax_t)res : res;
 	res = (s->modif == F_Z) ? (size_t)res : res;
 	res = (!s->modif) ? (unsigned int)res : res;
-	if (c == 'x' || c == 'X')
+	if (!res)
+		tmp = ft_strdup("0");
+	else if (c == 'x' || c == 'X')
 		tmp = ft_itoa_base(res, 16);
 	else if (c == 'o')
 		tmp = ft_itoa_base(res, 8);
-	if (c == 'x')
+	if (c == 'x' && tmp)
 		tmp = ft_stolower(tmp);
+	tmp = display_hex_oct(s, tmp, c, 0);
 	tmp = final_digit(s, tmp, 0, c);
 	return (tmp);
 }

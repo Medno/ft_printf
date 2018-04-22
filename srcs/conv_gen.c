@@ -53,3 +53,28 @@ char	*display_digit(t_struct *s, va_list ap, char conv)
 		tmp = conv_ouxx(s, ap, conv);
 	return (tmp);
 }
+
+char	*display_char(t_struct *s, va_list ap)
+{
+	char	*res;
+	int		tmp;
+	char	*field;
+
+	tmp = va_arg(ap, int);
+	res = NULL;
+	if (!tmp)
+		s->len++;
+	ft_put_in_str(&res, (char)tmp);
+	field = display_sp(s, 1);
+	if (!s->len_field)
+		return (res);
+	if (s->flags & F_MINUS)
+	{
+		res = ft_strjoindel(res, field);
+		ft_strdel(&field);
+		return (res);
+	}
+	field = ft_strjoindel(field, res);
+	ft_strdel(&res);
+	return (field);
+}

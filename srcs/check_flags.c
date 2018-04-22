@@ -38,7 +38,6 @@ static t_struct	*check_field(const char *format, int *i, t_struct *s, int tmp)
 	expten = 1;
 	while (format[*i] && ft_isdigit(format[*i]))
 	{
-printf("[%c]\n", format[*i]);
 		field = format[*i] - '0' + expten * field;
 		expten *= 10;
 		(*i)++;

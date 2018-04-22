@@ -20,6 +20,8 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 		tmp = display_str(s, ap);
 	if (digit_conv(f[*i]))
 		tmp = display_digit(s, ap, f[*i]);
+	if (f[*i] == 'c')
+		tmp = display_char(s, ap);
 	s->str = ft_strjoindel(s->str, tmp);
 	s->len += ft_strlen(tmp);
 	ft_strdel(&tmp);
@@ -35,7 +37,6 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 		s = (format[*i]) ? field_preci(format, i, s) : s;
 		(*i)++;
 	}
-	print_flag(*s);
 	if (format[*i] && is_convert(format[*i]))
 		s = check_conversion(format, i, s, ap);
 	else if (format[*i])
@@ -49,7 +50,7 @@ void	put_in_struct(const char *f, int i, t_struct *s)
 
 	ft_bzero(buf, i + 1);
 	ft_strncat(buf, f, i);
-	s->str = ft_strjoindel(s->str, buf);
+	s->str = ft_strjoinzero(s->str, buf, s->len);
 }
 
 void	parser(const char *format, va_list ap, t_struct *s)
@@ -70,6 +71,6 @@ void	parser(const char *format, va_list ap, t_struct *s)
 		else
 			i++;
 	}
-	s->str = ft_strjoindel(s->str, (char *)format);
+	s->str = ft_strjoinzero(s->str, (char *)format, s->len);
 	s->len += i;
 }
