@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/20 11:51:10 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:26:01 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "../libft/libft.h"
-
+			#include <stdio.h>
 # define F_HASHTAG	1
 # define F_ZERO		2
 # define F_MINUS	4
@@ -49,17 +50,20 @@ t_struct		*check_flags(const char *format, int *i, t_struct *s);
 void			init_struct(t_struct *s);
 char			*display_flags(t_struct *s, char *str, int pos);
 char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
-char			*display_str(t_struct *s, va_list ap);
-char			*display_digit(t_struct *s, va_list ap, char conv);
-char			*display_char(t_struct *s, va_list ap);
+char			*display_str(t_struct *s, va_list ap, int *len_tmp);
+char			*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp);
+char			*display_char(t_struct *s, char tmp, int *len_tmp);
 char			*display_sp(t_struct *s, int len_tmp);
+char			*display_sp_digit(t_struct *s, int len_tmp);
 void			put_in_struct(const char *f, int i, t_struct *s);
-char			*check_precision(t_struct *s, char *tmp);
+char			*check_precision_str(t_struct *s, char *tmp);
+char			*check_precision_digit(t_struct *s, char *tmp);
 
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_utoa_base(uintmax_t value, int base);
 char			*conv_di(t_struct *s, va_list ap, char c);
 char			*conv_ouxx(t_struct *s, va_list ap, char c);
+char			*conv_p(t_struct *s, va_list ap, int *len);
 int				nb_char_u(uintmax_t n, int base);
 int				nb_char(intmax_t n, int base);
 
@@ -67,7 +71,7 @@ int				is_convert(char c);
 int				is_flag(char c);
 int				digit_conv(char c);
 
-char			*ft_strjoinzero(char *s1, char *s2, int len);
+char			*ft_strjoinzero(char *s1, char *s2, int len1, int len2);
 //todel
 void	print_flag(t_struct s);
 #endif

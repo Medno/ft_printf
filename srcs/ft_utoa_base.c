@@ -6,11 +6,11 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:42:01 by exam              #+#    #+#             */
-/*   Updated: 2018/04/19 12:06:19 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:43:17 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_printf.h"
 
 int		nb_char_u(uintmax_t n, int base)
 {
@@ -33,7 +33,7 @@ char	*ft_utoa_base(uintmax_t value, int base)
 
 	nb_c = nb_char_u(value, base);
 	if (value == 0)
-		return ("0");
+		return (ft_strdup("0"));
 	if (!(res = (char *)malloc(sizeof(char) * nb_c + 1)))
 		return (NULL);
 	res[nb_c] = '\0';

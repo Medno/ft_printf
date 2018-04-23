@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 08:56:28 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/01/23 11:49:14 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:31:18 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@ char	*ft_strzerocat(char *s1, char *s2, int len1, int len2)
 	return (s1);
 }
 
-char	*ft_strjoinzero(char *s1, char *s2, int len)
+char	*ft_strjoinzero(char *s1, char *s2, int len1, int len2)
 {
 	char	*tmp;
-	int		len_tmp;
 
 	if (s1 && s2)
 	{
-		len_tmp = ft_strlen(s2);
-		if ((tmp = ft_strnew(len + ft_strlen(s2))))
+		if ((tmp = ft_strnew(len1 + len2)))
 		{
-			tmp = ft_strzerocat(tmp, s1, 0, len);
-			tmp = ft_strzerocat(tmp, s2, len, len_tmp);
+			tmp = ft_strzerocat(tmp, s1, 0, len1);
+			tmp = ft_strzerocat(tmp, s2, len1, len2);
 			ft_strdel(&s1);
 			return (tmp);
 		}

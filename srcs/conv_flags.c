@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/20 15:57:29 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:26:40 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 
 char	*final_digit(t_struct *s, char *t, int sign, char c)
 {
-	char	*tmp;
 	char	*last;
 	int		len;
 	char	*field;
+	char	*res;
 
 (void)c;
 (void)sign;
-(void)tmp;
 	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
 	field = NULL;
-//printf("--\nt : [%s]\n--\n", t);
-	field = display_sp(s, len);
-	if (!(s->flags & F_MINUS) && field)
-		last = ft_strjoin(field, t);
+	last = ft_strdup(t);
+	last = check_precision_digit(s, last);
+	len = ft_strlen(last);
+	field = display_sp_digit(s, len);
+	if (!(s->flags & F_MINUS) && field && s->len_field > s->precision)
+		res = ft_strjoin(field, last);
+	else if ((s->flags & F_MINUS) && field && s->len_field > s->precision)
+		res = ft_strjoin(last, field);
 	else
-		last = ft_strdup(t);
-	last = check_precision(s, last);
-	if ((s->flags & F_MINUS) && field)
-		last = ft_strjoindel(last, field);
-	return (last);
+		res = ft_strdup(last);
+	ft_strdel(&last);
+	ft_strdel(&field);
+	ft_strdel(&t);
+	return (res);
 }
 
 char	*conv_di(t_struct *s, va_list ap, char c)
@@ -68,7 +71,7 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 	res = va_arg(ap, uintmax_t);
 	res = (s->modif == F_HH) ? (unsigned char)res : res;
 	res = (s->modif == F_H) ? (unsigned short)res : res;
-	res = (s->modif == F_L || c == 'U' || c == 'O') ? (unsigned long)res : res;
+	res = (s->modif == F_L) ? (unsigned long)res : res;
 	res = (s->modif == F_LL) ? (unsigned long long)res : res;
 	res = (s->modif == F_J) ? (uintmax_t)res : res;
 	res = (s->modif == F_Z) ? (size_t)res : res;
@@ -76,12 +79,30 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 	if (!res)
 		tmp = ft_strdup("0");
 	else if (c == 'x' || c == 'X')
-		tmp = ft_itoa_base(res, 16);
-	else if (c == 'o')
-		tmp = ft_itoa_base(res, 8);
+		tmp = ft_utoa_base(res, 16);
+	else if (c == 'o' || c == 'O')
+		tmp = ft_utoa_base(res, 8);
+	else
+		tmp = ft_utoa_base(res, 10);
 	if (c == 'x' && tmp)
 		tmp = ft_stolower(tmp);
-	tmp = display_hex_oct(s, tmp, c, 0);
 	tmp = final_digit(s, tmp, 0, c);
+	tmp = display_hex_oct(s, tmp, c, 0);
+	return (tmp);
+}
+
+char	*conv_p(t_struct *s, va_list ap, int *len)
+{
+	uintmax_t	p;
+	char		*tmp;
+
+	p = va_arg(ap, uintmax_t);
+	tmp = ft_utoa_base(p, 16);
+	tmp = ft_stolower(tmp);
+	s->modif = F_L;
+	s->flags |= F_HASHTAG;
+	tmp = final_digit(s, tmp, 0, 'x');
+	tmp = display_hex_oct(s, tmp, 'p', 0);
+	*len = ft_strlen(tmp);
 	return (tmp);
 }

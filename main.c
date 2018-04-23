@@ -59,16 +59,45 @@ printf("Octal :\n");
 	res =    printf("Real [%0.10#+c] ", 'a'); printf("Res : [%d]\n", res);
 	res =    printf("Real [% c] ", 'a'); printf("Res : [%d]\n", res);
 
+	  printf("%5.6x\n", 5427);
+	  ft_printf("%5.6x", 5427);
 
-//	res = printf("Real [%0+#10x] ", -42);
-//	res = printf("Real [%0+#10x] ", -0);
-	int i = 0;
-	int j = 0;
+	  printf("%5 .20x\n", 5427);
+	  ft_printf("%5 .20x\n", 5427);
 
-//	ft_printf("test", tutu);
-//	printf("%1$4s %2$10s %3$10s\n", "obj", "qty", "price");
-//	printf("%1$4s %2$10s %3$10s\n", "----", "----", "-----");
-//	printf("%1$4s %2$10s %3$10s\n", "tomato", "1kg", "15");
-//	printf("%3$4s %2$10s %1$10s\n", "20", "2kg", "potato");
-//	printf("%1$4s %2$10s %3$10s\n", "tomato", "1kg", "15");
+	res =    printf("Real [%s] ", NULL); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%s] ", NULL); printf("Res : [%d]\n", res);
+ft_printf("[%-10x]\n", 42);
+ft_printf("[%s]\n", NULL);
+printf("[%s]\n", NULL);
+
+ft_printf("% u", 4294967295);
+ft_printf("%%\n");
+
+	res =    printf("Real [%#8x] ", 42); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%#8x] ", 42); printf("Res : [%d]\n", res);
+
+	res =    printf("Real [%2c] ", '\0'); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%2c] ", '\0'); printf("Res : [%d]\n", res);
+
+	res =    printf("Real [%.2s] is a string", ""); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%.2s] is a string", ""); printf("Res : [%d]\n", res);
+
+	res =    printf("Real [%5%] is a string\n"); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%5%] is a string\n"); printf("Res : [%d]\n", res);
+int	po;
+	res =    printf("Real [%p]\n", &po); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%p]\n", &po); printf("Res : [%d]\n", res);
+
+	printf("%O\n", LONG_MAX);
+	ft_printf("%O\n", LONG_MAX);
+
+	res =    printf("Real [%#lx]\n", 0); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%#lx]\n", 0); printf("Res : [%d]\n", res);
+
+	res =    printf("Real [%p]\n", NULL); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%p]\n", NULL); printf("Res : [%d]\n", res);
+
+	ft_printf("%lc, %lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
+	printf("%lc, %lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
 }

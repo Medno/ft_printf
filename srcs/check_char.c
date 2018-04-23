@@ -16,7 +16,7 @@ int		is_flag(char c)
 
 int		is_convert(char c)
 {
-	if (ft_strchr("sSpdDioOuUxXcC", c))
+	if (ft_strchr("%sSpdDioOuUxXcC", c))
 		return (1);
 	return (0);
 }

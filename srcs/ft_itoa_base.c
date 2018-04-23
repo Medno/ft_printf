@@ -6,13 +6,13 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:42:01 by exam              #+#    #+#             */
-/*   Updated: 2018/04/19 15:55:27 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:10:05 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_printf.h"
 
-static intmax_t	ft_abs(intmax_t n)
+static intmax_t	ft_absi(intmax_t n)
 {
 	if (n < 0)
 		return (-n);
@@ -40,14 +40,14 @@ char			*ft_itoa_base(intmax_t value, int base)
 
 	nb_c = nb_char(value, base);
 	if (value == 0)
-		return ("0");
+		return (ft_strdup("0"));
 	if (!(res = (char *)malloc(sizeof(char) * nb_c + 1)))
 		return (NULL);
 	res[nb_c] = '\0';
 	nb_c--;
 	while (value != 0)
 	{
-		res[nb_c] = labase[ft_abs(value % base)];
+		res[nb_c] = labase[ft_absi(value % base)];
 		value /= base;
 		nb_c--;
 	}
