@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 15:06:46 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/18 15:58:32 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:54:34 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	ft_printf(const char *format, ...)
 	parser(format, ap, &param);
 	va_end(ap);
 	//print_flag(param);
-	write(1, param.str, param.len);
+	if (param.len)
+		write(1, param.str, param.len);
 	ft_strdel(&(param.str));
 	return (param.len);
 }

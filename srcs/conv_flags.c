@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/23 18:26:40 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:29:59 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,12 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	char	*field;
 	char	*res;
 
-(void)c;
-(void)sign;
 	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
 	field = NULL;
 	last = ft_strdup(t);
 	last = check_precision_digit(s, last);
 	len = ft_strlen(last);
-	field = display_sp_digit(s, len);
-	if (!(s->flags & F_MINUS) && field && s->len_field > s->precision)
-		res = ft_strjoin(field, last);
-	else if ((s->flags & F_MINUS) && field && s->len_field > s->precision)
-		res = ft_strjoin(last, field);
-	else
-		res = ft_strdup(last);
-	ft_strdel(&last);
+	res = dis_width_digit(s, last, c, sign);
 	ft_strdel(&field);
 	ft_strdel(&t);
 	return (res);
@@ -59,7 +50,6 @@ char	*conv_di(t_struct *s, va_list ap, char c)
 	else
 		sign = (res < 0) ? -1 : 0;
 	tmp = final_digit(s, tmp, sign, c);
-	tmp = display_flags(s, tmp, sign);
 	return (tmp);
 }
 
@@ -86,8 +76,12 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_utoa_base(res, 10);
 	if (c == 'x' && tmp)
 		tmp = ft_stolower(tmp);
-	tmp = final_digit(s, tmp, 0, c);
-	tmp = display_hex_oct(s, tmp, c, 0);
+	if (res && (c == 'x' || c == 'X'))
+		tmp = final_digit(s, tmp, 1, c);
+	else if (c == 'x' || c == 'X')
+		tmp = final_digit(s, tmp, 0, c);
+	else
+		tmp = final_digit(s, tmp, 0, c);
 	return (tmp);
 }
 
@@ -101,8 +95,7 @@ char	*conv_p(t_struct *s, va_list ap, int *len)
 	tmp = ft_stolower(tmp);
 	s->modif = F_L;
 	s->flags |= F_HASHTAG;
-	tmp = final_digit(s, tmp, 0, 'x');
-	tmp = display_hex_oct(s, tmp, 'p', 0);
+	tmp = final_digit(s, tmp, 0, 'p');
 	*len = ft_strlen(tmp);
 	return (tmp);
 }

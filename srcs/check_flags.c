@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 10:33:59 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/20 15:57:25 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:05:14 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_struct		*check_flags(const char *format, int *i, t_struct *s)
 {
 	if (format[*i] == '#')
 		s->flags |= F_HASHTAG;
-	else if (format[*i] == '0' && (*i)++)
+	else if (format[*i] == '0')
 		s->flags |= F_ZERO;
 	else if (format[*i] == '-')
 		s->flags |= F_MINUS;

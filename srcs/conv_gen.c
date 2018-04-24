@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:53 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/23 17:56:54 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:20:57 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ char	*display_str(t_struct *s, va_list ap, int *len)
 	int		len_s;
 
 	tmp = va_arg(ap, char *);
-	if (!tmp && (*len = 6))
-		return (ft_strdup("(null)"));
-	res = ft_strdup(tmp);
+	res = (!tmp && (*len = 6)) ? res = ft_strdup("(null)") : ft_strdup(tmp);
 	res = check_precision_str(s, res);
 	len_s = ft_strlen(res);
-	*len = (s->len_field > len_s) ? s->len_field : ft_strlen(res);
+	*len = (s->len_field > len_s) ? s->len_field : len_s;
 	if (!s->len_field)
 		return (res);
 	field = display_sp(s, len_s);
+	if (!field)
+		return (res);
 	if (s->flags & F_MINUS)
 	{
 		res = ft_strjoindel(res, field);

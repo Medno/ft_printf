@@ -19,17 +19,17 @@ printf("------------- Test des digit : -------------\n");
 	res =    printf("Real [%+d] ", 42); printf("Res : [%d]\n", res);
 	res = ft_printf("Mine [%+d] ", 42); printf("Res : [%d]\n", res);
 
-	res =    printf("Real [%x] ", -42); printf("Res : [%d]\n", res);
-	res = ft_printf("Mine [%x] ", -42); printf("Res : [%d]\n", res);
+	res =    printf("xReal [%x] ", -42); printf("Res : [%d]\n", res);
+	res = ft_printf("xMine [%x] ", -42); printf("Res : [%d]\n", res);
 
 	res =    printf("Real [%+d] ", -42); printf("Res : [%d]\n", res);
 	res = ft_printf("Mine [%+d] ", -42); printf("Res : [%d]\n", res);
 
-	res =    printf("Real [%010#+x] ", -42); printf("Res : [%d]\n", res);
-	res = ft_printf("Mine [%010#+x] ", -42); printf("Res : [%d]\n", res);
+	res =    printf("010#+Real [%010#+x] ", -42); printf("Res : [%d]\n", res);
+	res = ft_printf("010#+Mine [%010#+x] ", -42); printf("Res : [%d]\n", res);
 
-	res =    printf("Real [%010#+x] ", -0); printf("Res : [%d]\n", res);
-	res = ft_printf("Mine [%010#+x] ", -0); printf("Res : [%d]\n", res);
+	res =    printf("010#+Real [%010#+x] ", -0); printf("Res : [%d]\n", res);
+	res = ft_printf("010#+Mine [%010#+x] ", -0); printf("Res : [%d]\n", res);
 
 printf("Octal :\n");
 	res =    printf("Real [%o] ", -42); printf("Res : [%d]\n", res);
@@ -74,8 +74,8 @@ printf("[%s]\n", NULL);
 ft_printf("% u", 4294967295);
 ft_printf("%%\n");
 
-	res =    printf("Real [%#8x] ", 42); printf("Res : [%d]\n", res);
-	res = ft_printf("Mine [%#8x] ", 42); printf("Res : [%d]\n", res);
+	res =    printf("08xReal [%#08x] ", 42); printf("Res : [%d]\n", res);
+	res = ft_printf("08xMine [%#08x] ", 42); printf("Res : [%d]\n", res);
 
 	res =    printf("Real [%2c] ", '\0'); printf("Res : [%d]\n", res);
 	res = ft_printf("Mine [%2c] ", '\0'); printf("Res : [%d]\n", res);
@@ -92,12 +92,45 @@ int	po;
 	printf("%O\n", LONG_MAX);
 	ft_printf("%O\n", LONG_MAX);
 
-	res =    printf("Real [%#lx]\n", 0); printf("Res : [%d]\n", res);
-	res = ft_printf("Mine [%#lx]\n", 0); printf("Res : [%d]\n", res);
+	res =    printf("#lxReal [%#lx]\n", 0); printf("Res : [%d]\n", res);
+	res = ft_printf("#lxMine [%#lx]\n", 0); printf("Res : [%d]\n", res);
 
 	res =    printf("Real [%p]\n", NULL); printf("Res : [%d]\n", res);
 	res = ft_printf("Mine [%p]\n", NULL); printf("Res : [%d]\n", res);
 
-	ft_printf("%lc, %lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
-	printf("%lc, %lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
+	res =    printf("Real [%-05d] ", -42); printf("Res : [%d]\n", res);
+	res = ft_printf("Mine [%-05d] ", -42); printf("Res : [%d]\n", res);
+	printf("%03.2d\n", 0);
+	ft_printf("%03.2d\n", 0);
+
+	printf("%0+5d\n", -42);
+	ft_printf("%0+5d\n", -42);
+
+	  printf("%05d\n", -42);
+	  ft_printf("%05d\n", -42);
+ft_printf("{%-15Z}\n", 123);
+printf("{%-15Z}\n", 123);
+
+
+printf("%");
+ft_printf("%");
+printf(" 03{% 03d}\n", 0);
+ft_printf(" 03{% 03d}\n", 0);
+printf("{% 03x}\n", 42);
+ft_printf("{% 03x}\n", 42);
+printf("010d{%010d}\n", -42);
+ft_printf("010d{%010d}\n", -42);
+
+printf("#.O [%#.O]\n", 0);
+ft_printf("#.O [%#.O]\n", 0);
+
+printf("#.X [%#.X]\n", 0);
+ft_printf("#.X [%#.X]\n", 0);
+
+printf("#o%#o\n", 0);
+ft_printf("#o%#o\n", 0);
+
+printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+
 }

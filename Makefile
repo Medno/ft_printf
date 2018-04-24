@@ -6,7 +6,7 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/04/23 17:50:06 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/04/24 16:52:46 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,6 @@ CC = gcc
 # flags
 C_FLAGS = -Wall -Wextra
 
-ifneq ($(NOERR),yes)
-FLAGS += -Werror
-endif
 #------Name of the project------#
 
 NAME = libftprintf.a
