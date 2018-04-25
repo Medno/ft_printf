@@ -6,7 +6,7 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/04/24 16:52:46 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/04/25 17:13:57 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ CC = gcc
 # flags
 C_FLAGS = -Wall -Wextra
 
+ifneq ($(NOERR),yes)
+FLAGS += -Werror
+endif
 #------Name of the project------#
 
 NAME = libftprintf.a
@@ -34,6 +37,8 @@ SRCS = ft_printf.c		\
 	   conv_flags.c		\
 	   check_char.c		\
 	   conv_gen.c		\
+	   conv_majc.c		\
+	   exit_printf.c	\
 	   ft_strzerojoin.c	\
 	   print_flags.c
 

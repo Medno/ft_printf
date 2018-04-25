@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/24 17:19:05 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/25 17:39:21 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,17 @@ t_struct		*field_preci(const char *format, int *i, t_struct *s);
 t_struct		*check_flags(const char *format, int *i, t_struct *s);
 void			init_struct(t_struct *s);
 void			reinit_struct(t_struct *s);
+
 char			*display_flags(t_struct *s, char *str, int pos);
 char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
-char			*display_str(t_struct *s, va_list ap, int *len_tmp);
+char			*display_str(t_struct *s, char *tmp, int *len_tmp, int conv);
 char			*display_digit(t_struct *s, va_list ap, char conv, int *len);
-char			*display_char(t_struct *s, char tmp, int *len_tmp);
+char			*display_char(t_struct *s, char *tmp, int *len_tmp);
 char			*display_sp(t_struct *s, int len_tmp);
 char			*display_sp_digit(t_struct *s, int len_tmp);
+char			*display_uni(t_struct *s, va_list ap, int *len_tmp);
+char			*get_str(t_struct *s, va_list ap, int *len, int conv);
+
 void			put_in_struct(const char *f, int i, t_struct *s);
 char			*check_precision_str(t_struct *s, char *tmp);
 char			*check_precision_digit(t_struct *s, char *tmp);
@@ -72,6 +76,8 @@ int				nb_char(intmax_t n, int base);
 int				is_convert(char c);
 int				is_flag(char c);
 int				digit_conv(char c);
+
+int				exit_printf(t_struct *s);
 
 char			*ft_strjoinzero(char *s1, char *s2, int len1, int len2);
 //todel

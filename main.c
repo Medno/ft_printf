@@ -133,4 +133,6 @@ ft_printf("#o%#o\n", 0);
 printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 
+ft_printf("Test C : [%C]\n", 0x03D5);
+ft_printf("Test C : [%C]\n", '0');
 }
