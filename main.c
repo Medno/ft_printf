@@ -60,7 +60,7 @@ printf("Octal :\n");
 	res =    printf("Real [% c] ", 'a'); printf("Res : [%d]\n", res);
 
 	  printf("%5.6x\n", 5427);
-	  ft_printf("%5.6x", 5427);
+	  ft_printf("%5.6x\n", 5427);
 
 	  printf("%5 .20x\n", 5427);
 	  ft_printf("%5 .20x\n", 5427);
@@ -121,8 +121,23 @@ ft_printf("{% 03x}\n", 42);
 printf("010d{%010d}\n", -42);
 ft_printf("010d{%010d}\n", -42);
 
-printf("#.O [%#.O]\n", 0);
-ft_printf("#.O [%#.O]\n", 0);
+res =    printf("#.O [%#.O]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf("#.O [%#.O]", 0); printf("Res : [%d]\n", res);
+
+res =    printf(".O [%.O]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf(".O [%.O]", 0); printf("Res : [%d]\n", res);
+
+res =    printf("#O [%#O]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf("#O [%#O]", 0); printf("Res : [%d]\n", res);
+
+res =    printf("#.o [%#.o]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf("#.o [%#.o]", 0); printf("Res : [%d]\n", res);
+
+res =    printf(".o [%.o]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf(".o [%.o]", 0); printf("Res : [%d]\n", res);
+
+res =    printf("#o [%#o]", 0);  printf("Res : [%d]\n", res);
+res = ft_printf("#o [%#o]", 0); printf("Res : [%d]\n", res);
 
 printf("#.X [%#.X]\n", 0);
 ft_printf("#.X [%#.X]\n", 0);

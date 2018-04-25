@@ -65,7 +65,7 @@ char	*display_uni(t_struct *s, va_list ap, int *len_tmp)
 	ft_bzero(uni, 5);
 	tmp = va_arg(ap, wchar_t);
 	if (conv_majc(tmp, uni) == -1)
-		return (exit_printf(s));
+		exit_printf(s);
 	tmp_s = ft_strdup(uni);
 	res = display_char(s, tmp_s, len_tmp);
 	ft_strdel(&tmp_s);

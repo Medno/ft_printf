@@ -54,16 +54,18 @@ char			*display_flags(t_struct *s, char *str, int pos);
 char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
 char			*display_str(t_struct *s, char *tmp, int *len_tmp, int conv);
 char			*display_digit(t_struct *s, va_list ap, char conv, int *len);
-char			*display_char(t_struct *s, char *tmp, int *len_tmp);
+char			*display_char(t_struct *s, char tmp, int *len_tmp);
 char			*display_sp(t_struct *s, int len_tmp);
 char			*display_sp_digit(t_struct *s, int len_tmp);
 char			*display_uni(t_struct *s, va_list ap, int *len_tmp);
 char			*get_str(t_struct *s, va_list ap, int *len, int conv);
+char			*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c);
 
 void			put_in_struct(const char *f, int i, t_struct *s);
 char			*check_precision_str(t_struct *s, char *tmp);
-char			*check_precision_digit(t_struct *s, char *tmp);
+char			*check_precision_digit(t_struct *s, char *tmp, char c);
 char			*dis_width_digit(t_struct *s, char *str, char conv, int pos);
+t_struct		*last_check(t_struct *s, char c);
 
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_utoa_base(uintmax_t value, int base);

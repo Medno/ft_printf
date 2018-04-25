@@ -25,11 +25,11 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 	else if (f[*i] == 'p')
 		tmp = conv_p(s, ap, &len_tmp);
 	else if (f[*i] == 'c')
-		tmp = get_char(s, ap, &len_tmp);
-	else if (f[*i] == 'C')
-		display_uni(s, ap, &len_tmp);
+		tmp = get_char_va(s, ap, &len_tmp, -1);
+//	else if (f[*i] == 'C')
+//		display_uni(s, ap, &len_tmp);
 	else
-		tmp = display_char(s, f[*i], &len_tmp);
+		tmp = get_char_va(s, ap, &len_tmp, f[*i]);
 	if (tmp)
 	{
 		s->str = ft_strjoinzero(s->str, tmp, s->len, len_tmp);
@@ -48,6 +48,7 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 		s = (format[*i] != '0') ? field_preci(format, i, s) : s;
 		(*i)++;
 	}
+	s = last_check(s, format[*i]);
 	if (format[*i])
 	{
 		s->modif = (ft_strchr("DUO", format[*i])) ? F_L : s->modif;

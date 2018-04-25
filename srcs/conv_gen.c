@@ -20,11 +20,12 @@ char	*get_str(t_struct *s, va_list ap, int *len, int conv)
 	return (display_str(s, tmp, len, conv));
 }
 
-char	*display_str(t_struct *s, char *tmp, int *len, int conv){
+char	*display_str(t_struct *s, char *tmp, int *len, int conv)
+{
 	char	*res;
 	char	*field;
 	int		len_s;
-
+(void)conv;
 	res = (!tmp && (*len = 6)) ? res = ft_strdup("(null)") : ft_strdup(tmp);
 	res = check_precision_str(s, res);
 	len_s = ft_strlen(res);
@@ -57,25 +58,28 @@ char	*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp)
 	return (tmp);
 }
 
-char	*get_char(t_struct *s, va_list ap, int *len_tmp)
+char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 {
-	int		tmp;
-	char	buf[2];
-	char	*res;
+	//char			buf[2];
+	char			*res;
+	unsigned char	tmp;
 
-	buf[0] = va_arg(ap, int);
-	buf[1] = '\0';
-	res = display_char(s, buf, len_tmp);
+	if (c == -1)
+		tmp = (unsigned char)va_arg(ap, int);
+	else
+		tmp = c;
+	res = display_char(s, tmp, len_tmp);
+//	res = display_char(s, buf, len_tmp);
 	return (res);
 }
 
-char	*display_char(t_struct *s, char *tmp, int *len_tmp)
+char	*display_char(t_struct *s, char tmp, int *len_tmp)
 {
 	char	*res;
 	char	*field;
 	int		len;
 
-	len = (tmp[1]) ? ft_strlen(tmp) : 1;
+	len = 1;
 	res = NULL;
 	ft_put_in_str(&res, (char)tmp);
 	*len_tmp = (s->len_field) ? s->len_field : len;

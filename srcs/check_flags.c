@@ -76,3 +76,13 @@ t_struct		*field_preci(const char *format, int *i, t_struct *s)
 		s = check_lenmod(format, i, s);
 	return (s);
 }
+
+t_struct		*last_check(t_struct *s, char c)
+{
+	if ((s->flags & F_ZERO) && ((s->flags & F_MINUS) ||
+			(s->precision != -1 && ft_strchr("dioOuixX", c))))
+		s->flags ^= F_ZERO;
+	if ((s->flags & F_PLUS) && (s->flags & F_SPACE))
+		s->flags ^= F_SPACE;
+	return (s);
+}

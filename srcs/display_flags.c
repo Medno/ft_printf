@@ -26,10 +26,9 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	char	*res;
 
 	ft_bzero(buf, 4);
-	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && !ft_strequ(str, "0"))
+	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && pos)
 		put_in_buffer(buf, '0');
-	if ((s->flags & F_HASHTAG && (c == 'x' || c == 'X')
-			&& pos) || c == 'p')
+	if ((s->flags & F_HASHTAG && (c == 'x' || c == 'X') && pos) || c == 'p')
 	{
 		put_in_buffer(buf, '0');
 		(c == 'x' || c == 'p') ? put_in_buffer(buf, 'x') : put_in_buffer(buf, 'X');
@@ -134,7 +133,7 @@ char	*display_sp_digit(t_struct *s, int len_tmp)
 	return (tmp);
 }
 
-char	*check_precision_digit(t_struct *s, char *tmp)
+char	*check_precision_digit(t_struct *s, char *tmp, char c)
 {
 	int		len;
 	int		len_tmp;
@@ -148,7 +147,8 @@ char	*check_precision_digit(t_struct *s, char *tmp)
 		res = display_field(s->precision - len_tmp, '0');
 		res = ft_strjoindel(res, tmp);
 	}
-	else if (!s->precision && tmp[0] == '0')
+	else if (!s->precision && tmp[0] == '0' &&
+		(ft_strchr("xX", c) || !(s->flags & F_HASHTAG)))
 		res = ft_strdup("");
 	else
 		return (tmp);
@@ -177,8 +177,10 @@ int		dis_len(t_struct *s, char *str, char c, int pos)
 	int		len_fin;
 	
 	len = ft_strlen(str);
-	len = ((s->flags & F_HASHTAG) && (c == 'x' || c == 'X')) ? len + 2 : len;
-	len = ((s->flags & F_HASHTAG) && (c == 'o' || c == 'O')) ? len + 1 : len;
+	len = ((s->flags & F_HASHTAG) && (c == 'x' || c == 'X') && pos) ?
+		len + 2 : len;
+	len = ((s->flags & F_HASHTAG) && (c == 'o' || c == 'O') && pos) ?
+		len + 1 : len;
 	len = ((pos == -1 || (s->flags & F_PLUS)) &&
 		(c == 'D' || c == 'd' || c == 'i')) ? len + 1 : len;
 	len = ((!(s->flags & F_PLUS) && (s->flags & F_SPACE)) &&
@@ -194,8 +196,7 @@ char	*dis_width_digit(t_struct *s, char *str, char c, int pos)
 	char	*field;
 
 	len_fin = dis_len(s, str, c, pos);
-	if ((s->flags & F_ZERO) && s->precision == -1 && !(s->flags & F_MINUS) &&
-			len_fin < s->len_field)
+	if ((s->flags & F_ZERO) && len_fin < s->len_field)
 	{
 		field = display_field(s->len_field - len_fin, '0');
 		field = ft_strjoindel(field, str);

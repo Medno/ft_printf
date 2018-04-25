@@ -22,7 +22,7 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
 	field = NULL;
 	last = ft_strdup(t);
-	last = check_precision_digit(s, last);
+	last = check_precision_digit(s, last, c);
 	len = ft_strlen(last);
 	res = dis_width_digit(s, last, c, sign);
 	ft_strdel(&field);
@@ -76,12 +76,18 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_utoa_base(res, 10);
 	if (c == 'x' && tmp)
 		tmp = ft_stolower(tmp);
+	if (!res)
+		tmp = final_digit(s, tmp, 0, c);
+	else
+		tmp = final_digit(s, tmp, 1, c);
+/*
 	if (res && (c == 'x' || c == 'X'))
 		tmp = final_digit(s, tmp, 1, c);
 	else if (c == 'x' || c == 'X')
 		tmp = final_digit(s, tmp, 0, c);
 	else
 		tmp = final_digit(s, tmp, 0, c);
+*/
 	return (tmp);
 }
 
