@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 13:00:29 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/25 17:39:49 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 10:18:59 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ char	*display_uni(t_struct *s, va_list ap, int *len_tmp)
 	if (conv_majc(tmp, uni) == -1)
 		exit_printf(s);
 	tmp_s = ft_strdup(uni);
-	res = display_char(s, tmp_s, len_tmp);
+//	res = display_char(s, tmp_s, len_tmp);
+	res = display_char(s, tmp, len_tmp);
 	ft_strdel(&tmp_s);
 	return (display_str(s, res, len_tmp, 's'));
 }

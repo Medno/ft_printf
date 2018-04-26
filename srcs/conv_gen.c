@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:53 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/25 17:47:42 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 14:15:50 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,27 @@ char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 		tmp = (unsigned char)va_arg(ap, int);
 	else
 		tmp = c;
-	res = display_char(s, tmp, len_tmp);
-//	res = display_char(s, buf, len_tmp);
+//	res = display_char(s, tmp, len_tmp);
+	ft_put_in_str(&res, (char)tmp);
+	res = display_char(s, res, len_tmp);
 	return (res);
 }
 
-char	*display_char(t_struct *s, char tmp, int *len_tmp)
+//char	*display_char(t_struct *s, char tmp, int *len_tmp)
+char	*display_char(t_struct *s, char *tmp, int *len_tmp)
 {
-	char	*res;
+//	char	*res;
 	char	*field;
 	int		len;
 
-	len = 1;
-	res = NULL;
-	ft_put_in_str(&res, (char)tmp);
+	len = (tmp);
+//	res = NULL;
 	*len_tmp = (s->len_field) ? s->len_field : len;
 	if (!s->len_field)
 		return (res);
 	field = display_sp(s, len);
+	if (!field)
+		return (res);
 	if (s->flags & F_MINUS)
 	{
 		res = ft_strjoinzero(res, field, len, s->len_field);

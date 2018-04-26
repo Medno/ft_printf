@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:11:31 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/24 17:14:43 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 10:31:28 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	char	*res;
 
 	ft_bzero(buf, 4);
-	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && pos)
+	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && pos && str[0] != '0')
 		put_in_buffer(buf, '0');
 	if ((s->flags & F_HASHTAG && (c == 'x' || c == 'X') && pos) || c == 'p')
 	{

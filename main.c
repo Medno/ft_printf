@@ -150,4 +150,10 @@ ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 
 ft_printf("Test C : [%C]\n", 0x03D5);
 ft_printf("Test C : [%C]\n", '0');
+
+printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
+ft_printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
+
+printf("titi % +---12.5% et%%%0004% et %+1%\n");
+ft_printf("titi % +---12.5% et%%%0004% et %+1%\n");
 }
