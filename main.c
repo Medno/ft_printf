@@ -161,5 +161,23 @@ ft_printf("titi % +---12.5% et%%%0004% et %+1%\n");
 	ft_printf("%.p, %.0p\n", 0, 0);
 
 	printf("Real : [%d]\n",    printf("%.C\n", 0));
-	printf("Mine : [%d]\n", ft_printf("%.C\n", 0));
+	ft_printf("Mine : [%d]\n", ft_printf("%.C\n", 0));
+
+	printf("Real : [%d]\n", printf("%lc\n", 254));
+	ft_printf("Mine : [%d]\n", ft_printf("%lc\n", 254));
+
+	printf("real : [% -56.18zi]\n", 0);
+	ft_printf("mine : [% -56.18zi]\n", 0);
+
+	printf("real : [% 042hhi]\n", 1261665231);
+	ft_printf("mine : [% 042hhi]\n", 1261665231);
+
+	printf("real : [%0#54ho]\n", 1891602244);
+	ft_printf("mine : [%0#54ho]\n", 1891602244);
+
+	printf("real : [%-#.42llo]\n", 1891602244);
+	ft_printf("mine : [%-#.42llo]\n", 1891602244);
+
+	printf("real : [%-1.28zo]\n", 1891602244);
+	ft_printf("mine : [%-1.28zo]\n", 1891602244);
 }

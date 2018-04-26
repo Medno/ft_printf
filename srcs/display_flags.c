@@ -26,7 +26,7 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	char	*res;
 
 	ft_bzero(buf, 4);
-	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && pos && str[0] != '0')
+	if (s->flags & F_HASHTAG && (c == 'o' || c == 'O') && pos)
 		put_in_buffer(buf, '0');
 	if ((s->flags & F_HASHTAG && (c == 'x' || c == 'X') && pos) || c == 'p')
 	{
@@ -37,8 +37,7 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	{
 		(s->flags & F_PLUS && pos >= 0) ? put_in_buffer(buf, '+') : 0;
 		(pos == -1) ? put_in_buffer(buf, '-') : 0;
-		if (!(s->flags & F_PLUS) && !(s->flags & F_MINUS) && (s->flags & F_SPACE)
-			&& pos >= 0)
+		if ((s->flags & F_SPACE) && pos >= 0)
 			put_in_buffer(buf, ' ');
 	}
 	if (buf[0] != '\0')
@@ -135,12 +134,12 @@ char	*display_sp_digit(t_struct *s, int len_tmp)
 
 char	*check_precision_digit(t_struct *s, char *tmp, char c)
 {
-	int		len;
 	int		len_tmp;
 	char	*res;
 
 	len_tmp = ft_strlen(tmp);
-	len = (s->precision == -1) ? len_tmp : s->precision;
+	if ((c == 'o' || c == 'O') && s->precision >=0 && s->flags & F_HASHTAG && tmp[0] != '0')
+		len_tmp++;
 	res = NULL;
 	if (s->precision > len_tmp)
 	{
@@ -184,7 +183,7 @@ int		dis_len(t_struct *s, char *str, char c, int pos)
 	len = ((pos == -1 || (s->flags & F_PLUS)) &&
 		(c == 'D' || c == 'd' || c == 'i')) ? len + 1 : len;
 	len = ((!(s->flags & F_PLUS) && (s->flags & F_SPACE)) &&
-		(c == 'D' || c == 'd' || c == 'i')) ? len + 1 : len;
+		(c == 'D' || c == 'd' || c == 'i') && pos >= 0) ? len + 1 : len;
 	len_fin = (s->precision != -1 && s->precision > len) ? s->precision : len;
 	return (len_fin);
 }
@@ -205,8 +204,9 @@ char	*dis_width_digit(t_struct *s, char *str, char c, int pos)
 		return (tmp);
 	}
 	tmp = display_hex_oct(s, str, c, pos);
-	len_fin = (s->precision == -1 || s->precision < (int)ft_strlen(tmp)) ?
-		ft_strlen(tmp) : s->precision;
+	len_fin = ft_strlen(tmp);
+	len_fin = (s->precision == -1 || s->precision < len_fin) ?
+		len_fin : s->precision;
 	if (len_fin < s->len_field)
 	{
 		field = display_field(s->len_field - len_fin, ' ');

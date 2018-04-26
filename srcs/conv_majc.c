@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-int	first_st(int c, char uni[4])
+int	first_st(wchar_t c, char uni[4])
 {
 	uni[0] = c;
 	return (1);
 }
 
-int	second_st(int c, char uni[4])
+int	second_st(wchar_t c, char uni[4])
 {
 	uni[0] = (c >> 6) | 0xC0;
 	uni[1] = (c & 0x3F) | 0x80;
 	return (2);
 }
 
-int	third_st(int c, char uni[4])
+int	third_st(wchar_t c, char uni[4])
 {
 	uni[0] = (c >> 12) | 0xE0;
 	uni[1] = ((c >> 6) & 0x3F) | 0x80;
@@ -33,7 +33,7 @@ int	third_st(int c, char uni[4])
 	return (3);
 }
 
-int forth_st(int c, char uni[4])
+int forth_st(wchar_t c, char uni[4])
 {
 	uni[0] = (c >> 16) | 0xF0;
 	uni[1] = ((c >> 12) & 0x3F) | 0x80;
@@ -42,15 +42,17 @@ int forth_st(int c, char uni[4])
 	return (4);
 }
 
-int	conv_majc(int c, char uni[4])
+int	conv_majc(wchar_t c, char uni[4])
 {
-	if (c < 0x80)
+	if ((c >= 0xD800 && c <= 0xDFFF) || (c >= 0x30000 && c <= 0xDFFFF) || c > 0x10FFFF)
+		return (-1);
+	if (c < 257)
 		return (first_st(c, uni));
-	if (c <= 0x7FF)
+	else if (c <= 0x7FF)
 		return (second_st(c, uni));
-	if (c <= 0x7FFFF)
+	else if (c <= 0xFFFF)
 		return (third_st(c, uni));
-	if (c <= 0x7FFFFFF)
+	else if (c <= 0x10FFFF)
 		return (forth_st(c, uni));
 	return (-1);
 }
@@ -66,7 +68,6 @@ char	*display_uni(t_struct *s, va_list ap, int *len_tmp)
 	tmp = va_arg(ap, wchar_t);
 	if (conv_majc(tmp, uni) == -1)
 		exit_printf(s);
-
 	tmp_s = ft_strdup(uni);
 	tmp_s = display_char(s, tmp_s, len_tmp);
 	return (tmp_s);

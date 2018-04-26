@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "../libft/libft.h"
+
 			#include <stdio.h>
 # define F_HASHTAG	1
 # define F_ZERO		2
