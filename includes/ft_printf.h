@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/25 17:39:21 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 14:34:38 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char			*display_flags(t_struct *s, char *str, int pos);
 char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
 char			*display_str(t_struct *s, char *tmp, int *len_tmp, int conv);
 char			*display_digit(t_struct *s, va_list ap, char conv, int *len);
-char			*display_char(t_struct *s, char tmp, int *len_tmp);
+char			*display_char(t_struct *s, char *tmp, int *len_tmp);
+//char			*display_char(t_struct *s, char tmp, int *len_tmp);
 char			*display_sp(t_struct *s, int len_tmp);
 char			*display_sp_digit(t_struct *s, int len_tmp);
 char			*display_uni(t_struct *s, va_list ap, int *len_tmp);

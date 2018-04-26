@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 13:00:29 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 10:18:59 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 17:26:33 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ char	*display_uni(t_struct *s, va_list ap, int *len_tmp)
 	wchar_t	tmp;
 	char	uni[5];
 	char	*tmp_s;
-	char	*res;
+//	char	*res;
 
 	ft_bzero(uni, 5);
 	tmp = va_arg(ap, wchar_t);
 	if (conv_majc(tmp, uni) == -1)
 		exit_printf(s);
+
 	tmp_s = ft_strdup(uni);
-//	res = display_char(s, tmp_s, len_tmp);
-	res = display_char(s, tmp, len_tmp);
-	ft_strdel(&tmp_s);
-	return (display_str(s, res, len_tmp, 's'));
+	tmp_s = display_char(s, tmp_s, len_tmp);
+	return (tmp_s);
+//	res = display_char(s, tmp, len_tmp);
+//	ft_strdel(&tmp_s);
+//	return (display_str(s, tmp_s, len_tmp, 's'));
 }

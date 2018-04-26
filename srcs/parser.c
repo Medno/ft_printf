@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:21:20 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 14:10:24 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 14:36:49 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 		tmp = display_digit(s, ap, f[*i], &len_tmp);
 	else if (f[*i] == 'p')
 		tmp = conv_p(s, ap, &len_tmp);
-//	else if (f[*i] == 'C' || (f[*i] == 'c' && s->modif == F_L))
-//		display_uni(s, ap, &len_tmp);
+	else if (f[*i] == 'C' || (f[*i] == 'c' && s->modif == F_L))
+		tmp = display_uni(s, ap, &len_tmp);
 	else if (f[*i] == 'c')
 		tmp = get_char_va(s, ap, &len_tmp, -1);
 	else

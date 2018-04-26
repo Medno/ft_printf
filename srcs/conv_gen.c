@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:53 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 14:15:50 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/26 14:33:39 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 }
 
 //char	*display_char(t_struct *s, char tmp, int *len_tmp)
-char	*display_char(t_struct *s, char *tmp, int *len_tmp)
+char	*display_char(t_struct *s, char *res, int *len_tmp)
 {
 //	char	*res;
 	char	*field;
 	int		len;
 
-	len = (tmp);
+	len = (res[1]) ? ft_strlen(res) : 1;
 //	res = NULL;
 	*len_tmp = (s->len_field) ? s->len_field : len;
 	if (!s->len_field)

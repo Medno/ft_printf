@@ -156,4 +156,10 @@ ft_printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
 
 printf("titi % +---12.5% et%%%0004% et %+1%\n");
 ft_printf("titi % +---12.5% et%%%0004% et %+1%\n");
+
+	printf("%.p, %.0p\n", 0, 0);
+	ft_printf("%.p, %.0p\n", 0, 0);
+
+	printf("Real : [%d]\n",    printf("%.C\n", 0));
+	printf("Mine : [%d]\n", ft_printf("%.C\n", 0));
 }
