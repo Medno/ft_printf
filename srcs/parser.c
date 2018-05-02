@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:21:20 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 14:36:49 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/27 16:45:29 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,24 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 	int		len_tmp;
 
 	len_tmp = 0;
-	if (f[*i] == 's' || f[*i] == 'S')
-		tmp = get_str(s, ap, &len_tmp, f[*i]);
+	if (f[*i] == 's')
+		tmp = get_str(s, ap, &len_tmp);
+	else if (f[*i] == 'S' || (f[*i] == 's' && s->modif == F_L))
+		tmp = conv_majs(s, ap, &len_tmp);
 	else if (digit_conv(f[*i]))
 		tmp = display_digit(s, ap, f[*i], &len_tmp);
 	else if (f[*i] == 'p')
 		tmp = conv_p(s, ap, &len_tmp);
 	else if (f[*i] == 'C' || (f[*i] == 'c' && s->modif == F_L))
-		tmp = display_uni(s, ap, &len_tmp);
+		tmp = conv_majc(s, ap, &len_tmp);
 	else if (f[*i] == 'c')
 		tmp = get_char_va(s, ap, &len_tmp, -1);
 	else
 		tmp = get_char_va(s, ap, &len_tmp, f[*i]);
-	if (tmp)
+	if (tmp && !s->exit)
 	{
+		put_in_struct(f, s->eoc, s);
+		s->len += s->eoc;
 		s->str = ft_strjoinzero(s->str, tmp, s->len, len_tmp);
 		s->len += len_tmp;
 		ft_strdel(&tmp);
@@ -71,12 +75,11 @@ void	parser(const char *format, va_list ap, t_struct *s)
 	int	i;
 
 	i = 0;
-	while (format[i])
+	while (format[i] && !s->exit)
 	{
 		if (format[i] && format[i] == '%' && format[i + 1])
 		{
-			put_in_struct(format, i, s);
-			s->len += i;
+			s->eoc = i;
 			treat_format(format, &i, s, ap);
 			format += i;
 			i = 0;

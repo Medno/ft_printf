@@ -6,26 +6,49 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:53 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 14:33:39 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/27 16:59:59 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*get_str(t_struct *s, va_list ap, int *len, int conv)
+char	*get_str(t_struct *s, va_list ap, int *len)
 {
 	char	*tmp;
 
 	tmp = va_arg(ap, char *);
-	return (display_str(s, tmp, len, conv));
+	return (display_str(s, tmp, len));
 }
 
-char	*display_str(t_struct *s, char *tmp, int *len, int conv)
+char	*conv_majs(t_struct *s, va_list ap, int *len)
+{
+	char	*res;
+	wchar_t	*get;
+	char	*tmp;
+
+	get = va_arg(ap, wchar_t *);
+	res = ft_strdup("");
+	while (*get && !s->exit)
+	{
+		tmp = display_uni(s, *get);
+		res = ft_strjoindel(res, tmp);
+		ft_strdel(&tmp);
+		get++;
+	}
+	if (s->exit)
+		return (NULL);
+	tmp = display_str(s, res, len);
+	res = ft_strdup(tmp);
+	ft_strdel(&tmp);
+	return (res);
+}
+
+char	*display_str(t_struct *s, char *tmp, int *len)
 {
 	char	*res;
 	char	*field;
 	int		len_s;
-(void)conv;
+
 	res = (!tmp && (*len = 6)) ? res = ft_strdup("(null)") : ft_strdup(tmp);
 	res = check_precision_str(s, res);
 	len_s = ft_strlen(res);
@@ -83,7 +106,7 @@ char	*display_char(t_struct *s, char *res, int *len_tmp)
 
 	len = (res[1]) ? ft_strlen(res) : 1;
 //	res = NULL;
-	*len_tmp = (s->len_field) ? s->len_field : len;
+	*len_tmp = (s->len_field && s->len_field > len) ? s->len_field : len;
 	if (!s->len_field)
 		return (res);
 	field = display_sp(s, len);

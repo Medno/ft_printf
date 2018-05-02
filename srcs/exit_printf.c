@@ -6,14 +6,14 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:12:39 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/25 17:13:30 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/27 11:39:11 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	exit_printf(t_struct *s)
+char	*exit_printf(t_struct *s)
 {
-	ft_strdel(&(s->str));
-	exit(0);
+	s->exit = 1;
+	return (NULL);
 }

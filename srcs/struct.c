@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:10:04 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/24 17:18:47 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/04/27 14:21:52 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_struct(t_struct *s)
 	s->len_field = 0;
 	s->modif = 0;
 	s->len = 0;
+	s->exit = 0;
+	s->eoc = 0;
 	s->str = ft_strdup("");
 }
 

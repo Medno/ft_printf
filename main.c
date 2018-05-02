@@ -1,7 +1,9 @@
 #include "includes/ft_printf.h"
 # include <stdio.h>
+# include <locale.h>
 int		main()
 {
+//	setlocale(LC_ALL, "");
 	char *tutu = "bonjour";
 	int	res;
 printf("------------- Test des str : -------------\n");
@@ -180,4 +182,22 @@ ft_printf("titi % +---12.5% et%%%0004% et %+1%\n");
 
 	printf("real : [%-1.28zo]\n", 1891602244);
 	ft_printf("mine : [%-1.28zo]\n", 1891602244);
+
+	printf("real : [%C]\n", (wint_t)-2);
+	ft_printf("mine : [%C]\n", (wint_t)-2);
+
+	printf("real : [%C]\n", 0xbffe);
+	ft_printf("mine : [%C]\n", 0xbffe);
+
+	printf("real : [%C]\n", 256);
+	ft_printf("mine : [%C]\n", 256);
+
+	printf("real : [%C]\n", 2250);
+	ft_printf("mine : [%C]\n", 2250);
+
+	printf("real : [%-1C]\n", 2250);
+	ft_printf("mine : [%-1C]\n", 2250);
+
+	printf("real : [%C]\n", 256);
+	ft_printf("mine : [%C]\n", 256);
 }
