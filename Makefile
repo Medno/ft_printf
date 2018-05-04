@@ -19,7 +19,7 @@ CC = gcc
 C_FLAGS = -Wall -Wextra
 
 ifneq ($(NOERR),yes)
-FLAGS += -Werror
+C_FLAGS += -Werror
 endif
 #------Name of the project------#
 
@@ -105,11 +105,11 @@ OBJP += $(addprefix $(LIB_PATH)/, $(LIB_FILES:.c=.o))
 OBJP += $(addprefix $(OPATH)/, $(SRCS:.c=.o))
 
 ifeq ($(DEV),yes)
-	FLAGS += -g
+FLAGS += -g
 endif
 
 ifeq ($(SAN),yes)
-	FLAGS += -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+FLAGS += -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 endif
 
 #------Main rules------#
@@ -119,7 +119,7 @@ all: c_lib $(OPATH) $(NAME)
 re: fclean all
 
 $(OPATH)/%.o: $(SRCPATH)/%.c
-	@$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $^
+	$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $^
 	@echo " $(COL_GREEN)[OK]$(EOC)    $(COL_YELLOW)Compiling:$(EOC)" $<
 
 $(OPATH):
@@ -149,7 +149,7 @@ main: $(NAME)
 #------Compilation of Libft------#
 
 c_lib :
-	@$(MAKE) -C libft/ MAKEFLAGS=
+	@$(MAKE) -C libft/ NOERR=$(NOERR) DEV=$(DEV) SAN=$(SAN)
 
 #------Define colors------#
 

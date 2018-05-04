@@ -101,7 +101,7 @@ char	*check_precision_str(t_struct *s, char *tmp)
 	int		len;
 
 	len = ft_strlen(tmp);
-	if (s->precision != -1 && s->precision <= len)
+	if (s->precision != -1 && s->precision < len)
 	{
 		res = ft_strndup(tmp, s->precision);
 		ft_strdel(&tmp);

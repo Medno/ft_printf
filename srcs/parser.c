@@ -18,10 +18,10 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 	int		len_tmp;
 
 	len_tmp = 0;
-	if (f[*i] == 's')
-		tmp = get_str(s, ap, &len_tmp);
-	else if (f[*i] == 'S' || (f[*i] == 's' && s->modif == F_L))
+	if (f[*i] == 'S' || (f[*i] == 's' && s->modif == F_L))
 		tmp = conv_majs(s, ap, &len_tmp);
+	else if (f[*i] == 's')
+		tmp = get_str(s, ap, &len_tmp);
 	else if (digit_conv(f[*i]))
 		tmp = display_digit(s, ap, f[*i], &len_tmp);
 	else if (f[*i] == 'p')

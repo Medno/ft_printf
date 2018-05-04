@@ -47,7 +47,7 @@ int	check_chart(wchar_t c, char uni[4])
 	if ((c >= 0xD800 && c <= 0xDFFF) || /*(c >= 0x30000 && c <= 0xDFFFF) ||*/
 			c > 0x10FFFF || c < 0 || c == 256)
 		return (-1);
-	if (c < 128)
+	if (c <= 0xFF)
 		return (first_st(c, uni));
 	else if (c <= 0x7FF)
 		return (second_st(c, uni));
@@ -65,10 +65,14 @@ char	*display_uni(t_struct *s, wchar_t tmp)
 //	char	*res;
 
 	ft_bzero(uni, 5);
+	tmp_s = NULL;
 //printf("wchar_t : [%d]\n", tmp);
 	if (check_chart(tmp, uni) == -1)
 		return (exit_printf(s));
-	tmp_s = ft_strdup(uni);
+	if (!uni[0])
+		tmp_s = ft_put_in_str(tmp_s, '\0');
+	else
+		tmp_s = ft_strdup(uni);
 //printf("len : %zu\n", ft_strlen(tmp_s));
 	return (tmp_s);
 //	res = display_char(s, tmp, len_tmp);
@@ -82,6 +86,7 @@ char	*conv_majc(t_struct *s, va_list ap, int *len_tmp)
 	wchar_t	get;
 
 	get = va_arg(ap, wchar_t);
+	tmp = NULL;
 	tmp = display_uni(s, get);
 	if (tmp)
 		tmp = display_char(s, tmp, len_tmp);

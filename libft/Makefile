@@ -62,6 +62,14 @@ FILES = ft_atoi.c \
 
 OBJ = $(FILES:.c=.o)
 
+ifeq ($(DEV),yes)
+C_FLAGS += -g
+endif
+
+ifeq ($(SAN),yes)
+C_FLAGS += -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+endif
+
 #------Define colors------#
 
 BOLD_GREEN = \033[01;32m

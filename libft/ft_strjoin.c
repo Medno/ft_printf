@@ -76,21 +76,18 @@ char	*ft_onejoinf(char *news, char *old)
 	return (NULL);
 }
 
-void	ft_put_in_str(char **str, char c)
+char	*ft_put_in_str(char *str, char c)
 {
-	char	*tmp;
+	char	tmp[2];
 
-	tmp = NULL;
-	if (!*str)
+	tmp[0] = c;
+	tmp[1] = '\0';
+	if (!str)
 	{
-		*str = ft_strnew(1);
-		**str = c;
+		str = ft_strnew(1);
+		str[0] = c;
 	}
 	else
-	{
-		tmp = ft_strnew(1);
-		tmp[0] = c;
-		*str = ft_strjoindel(*str, tmp);
-	}
-	ft_strdel(&tmp);
+		str = ft_strjoindel(str, tmp);
+	return (str);
 }

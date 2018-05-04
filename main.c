@@ -206,4 +206,14 @@ ft_printf("mine : [%C]\n", 256);
 
    printf("real : [%36lc]\n", (char)248);
 ft_printf("mine : [%36lc]\n", (char)256);
+
+	wchar_t	s[4];
+
+	s[0] = 0x53;
+	s[1] = 0x3abc;
+	s[2] = 0x81000;
+	s[3] = '\0';
+   printf("Real : [%d]\n",    printf("%.5ls\n", 0));
+ft_printf("Mine : [%d]\n", ft_printf("%.5ls\n", 0));
+
 }
