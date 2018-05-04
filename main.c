@@ -141,63 +141,69 @@ res = ft_printf(".o [%.o]", 0); printf("Res : [%d]\n", res);
 res =    printf("#o [%#o]", 0);  printf("Res : [%d]\n", res);
 res = ft_printf("#o [%#o]", 0); printf("Res : [%d]\n", res);
 
-printf("#.X [%#.X]\n", 0);
-ft_printf("#.X [%#.X]\n", 0);
+   printf("real #.X [%#.X]\n", 0);
+ft_printf("mine #.X [%#.X]\n", 0);
 
-printf("#o%#o\n", 0);
-ft_printf("#o%#o\n", 0);
+   printf("real #o%#o\n", 0);
+ft_printf("mine #o%#o\n", 0);
 
-printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
-ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+   printf("real %1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+ft_printf("mine %1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 
-ft_printf("Test C : [%C]\n", 0x03D5);
-ft_printf("Test C : [%C]\n", '0');
+ft_printf("Mine Test C : [%C]\n", 0x03D5);
+ft_printf("Mine Test C : [%C]\n", '0');
 
-printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
-ft_printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
+   printf("Real test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
+ft_printf("Mine test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
 
-printf("titi % +---12.5% et%%%0004% et %+1%\n");
-ft_printf("titi % +---12.5% et%%%0004% et %+1%\n");
+   printf("real titi % +---12.5% et%%%0004% et %+1%\n");
+ft_printf("mine titi % +---12.5% et%%%0004% et %+1%\n");
 
-	printf("%.p, %.0p\n", 0, 0);
-	ft_printf("%.p, %.0p\n", 0, 0);
+   printf("real %.p, %.0p\n", 0, 0);
+ft_printf("mine %.p, %.0p\n", 0, 0);
 
-	printf("Real : [%d]\n",    printf("%.C\n", 0));
-	ft_printf("Mine : [%d]\n", ft_printf("%.C\n", 0));
+   printf("real %p, %.0p\n", 0, 0);
+ft_printf("mine %p, %.0p\n", 0, 0);
 
-	printf("Real : [%d]\n", printf("%lc\n", 254));
-	ft_printf("Mine : [%d]\n", ft_printf("%lc\n", 254));
+   printf("Real : [%d]\n",    printf("%.C\n", 0));
+ft_printf("Mine : [%d]\n", ft_printf("%.C\n", 0));
 
-	printf("real : [% -56.18zi]\n", 0);
-	ft_printf("mine : [% -56.18zi]\n", 0);
+   printf("Real : [%d]\n",    printf("%lc", 254));
+ft_printf("Mine : [%d]\n", ft_printf("%lc", 254));
 
-	printf("real : [% 042hhi]\n", 1261665231);
-	ft_printf("mine : [% 042hhi]\n", 1261665231);
+   printf("real : [% -56.18zi]\n", 0);
+ft_printf("mine : [% -56.18zi]\n", 0);
 
-	printf("real : [%0#54ho]\n", 1891602244);
-	ft_printf("mine : [%0#54ho]\n", 1891602244);
+   printf("real : [% 042hhi]\n", 1261665231);
+ft_printf("mine : [% 042hhi]\n", 1261665231);
 
-	printf("real : [%-#.42llo]\n", 1891602244);
-	ft_printf("mine : [%-#.42llo]\n", 1891602244);
+   printf("real : [%0#54ho]\n", 1891602244);
+ft_printf("mine : [%0#54ho]\n", 1891602244);
 
-	printf("real : [%-1.28zo]\n", 1891602244);
-	ft_printf("mine : [%-1.28zo]\n", 1891602244);
+   printf("real : [%-#.42llo]\n", 1891602244);
+ft_printf("mine : [%-#.42llo]\n", 1891602244);
 
-	printf("real : [%C]\n", (wint_t)-2);
-	ft_printf("mine : [%C]\n", (wint_t)-2);
+   printf("real : [%-1.28zo]\n", 1891602244);
+ft_printf("mine : [%-1.28zo]\n", 1891602244);
 
-	printf("real : [%C]\n", 0xbffe);
-	ft_printf("mine : [%C]\n", 0xbffe);
+   printf("real : [%C]\n", (wint_t)-2);
+ft_printf("mine : [%C]\n", (wint_t)-2);
 
-	printf("real : [%C]\n", 256);
-	ft_printf("mine : [%C]\n", 256);
+   printf("real : [%C]\n", 0xbffe);
+ft_printf("mine : [%C]\n", 0xbffe);
 
-	printf("real : [%C]\n", 2250);
-	ft_printf("mine : [%C]\n", 2250);
+   printf("real : [%C]\n", 256);
+ft_printf("mine : [%C]\n", 256);
 
-	printf("real : [%-1C]\n", 2250);
-	ft_printf("mine : [%-1C]\n", 2250);
+   printf("real : [%C]\n", 2250);
+ft_printf("mine : [%C]\n", 2250);
 
-	printf("real : [%C]\n", 256);
-	ft_printf("mine : [%C]\n", 256);
+   printf("real : [%-1C]\n", 2250);
+ft_printf("mine : [%-1C]\n", 2250);
+
+   printf("real : [%C]\n", 256);
+ft_printf("mine : [%C]\n", 256);
+
+   printf("real : [%36lc]\n", (char)248);
+ft_printf("mine : [%36lc]\n", (char)256);
 }

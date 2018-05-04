@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 13:00:29 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/27 16:55:20 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:11:05 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_chart(wchar_t c, char uni[4])
 	if ((c >= 0xD800 && c <= 0xDFFF) || /*(c >= 0x30000 && c <= 0xDFFFF) ||*/
 			c > 0x10FFFF || c < 0 || c == 256)
 		return (-1);
-	if (c < 257)
+	if (c < 128)
 		return (first_st(c, uni));
 	else if (c <= 0x7FF)
 		return (second_st(c, uni));
@@ -69,6 +69,7 @@ char	*display_uni(t_struct *s, wchar_t tmp)
 	if (check_chart(tmp, uni) == -1)
 		return (exit_printf(s));
 	tmp_s = ft_strdup(uni);
+//printf("len : %zu\n", ft_strlen(tmp_s));
 	return (tmp_s);
 //	res = display_char(s, tmp, len_tmp);
 //	ft_strdel(&tmp_s);

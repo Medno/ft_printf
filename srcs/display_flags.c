@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:11:31 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 10:31:28 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:43:29 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ char	*check_precision_digit(t_struct *s, char *tmp, char c)
 	char	*res;
 
 	len_tmp = ft_strlen(tmp);
-	if ((c == 'o' || c == 'O') && s->precision >=0 && s->flags & F_HASHTAG && tmp[0] != '0')
+	if ((c == 'o' || c == 'O') && s->precision >= 0 && s->flags & F_HASHTAG && tmp[0] != '0')
 		len_tmp++;
 	res = NULL;
 	if (s->precision > len_tmp)
@@ -147,7 +147,7 @@ char	*check_precision_digit(t_struct *s, char *tmp, char c)
 		res = ft_strjoindel(res, tmp);
 	}
 	else if (!s->precision && tmp[0] == '0' &&
-		(ft_strchr("xX", c) || !(s->flags & F_HASHTAG)))
+		(ft_strchr("xXp", c) || !(s->flags & F_HASHTAG)))
 		res = ft_strdup("");
 	else
 		return (tmp);
