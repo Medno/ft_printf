@@ -30,8 +30,9 @@ printf("------------- Test des digit : -------------\n");
 	res =    printf("010#+Real [%010#+x] ", -42); printf("Res : [%d]\n", res);
 	res = ft_printf("010#+Mine [%010#+x] ", -42); printf("Res : [%d]\n", res);
 
-	res =    printf("010#+Real [%010#+x] ", -0); printf("Res : [%d]\n", res);
-	res = ft_printf("010#+Mine [%010#+x] ", -0); printf("Res : [%d]\n", res);
+//	res =    printf("010#+Real [%010#+x] ", -0); printf("Res : [%d]\n", res);
+	res = ft_printf("010#+Mine [%010#+x] ", -0);// printf("Res : [%d]\n", res);
+while (1) ft_putchar('\0');
 
 printf("Octal :\n");
 	res =    printf("Real [%o] ", -42); printf("Res : [%d]\n", res);

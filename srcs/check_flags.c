@@ -24,9 +24,7 @@ t_struct		*check_flags(const char *format, int *i, t_struct *s)
 		s->flags |= F_SPACE;
 	else if (format[*i] == '+')
 		s->flags |= F_PLUS;
-//	if (format[*i] && format[*i] == '\'' && (*i)++)
-//	s->flags |= F_QUOTE;
-		return (s);
+	return (s);
 }
 
 static t_struct	*check_field(const char *format, int *i, t_struct *s, int tmp)

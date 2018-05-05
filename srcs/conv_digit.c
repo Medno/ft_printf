@@ -16,16 +16,14 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 {
 	char	*last;
 	int		len;
-	char	*field;
 	char	*res;
 
-	len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
-	field = NULL;
+	//len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
 	last = ft_strdup(t);
 	last = check_precision_digit(s, last, c);
 	len = ft_strlen(last);
 	res = dis_width_digit(s, last, c, sign);
-	ft_strdel(&field);
+	ft_strdel(&last);
 	ft_strdel(&t);
 	return (res);
 }
@@ -80,14 +78,6 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = final_digit(s, tmp, 0, c);
 	else
 		tmp = final_digit(s, tmp, 1, c);
-/*
-	if (res && (c == 'x' || c == 'X'))
-		tmp = final_digit(s, tmp, 1, c);
-	else if (c == 'x' || c == 'X')
-		tmp = final_digit(s, tmp, 0, c);
-	else
-		tmp = final_digit(s, tmp, 0, c);
-*/
 	return (tmp);
 }
 

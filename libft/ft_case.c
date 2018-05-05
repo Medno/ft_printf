@@ -29,15 +29,12 @@ int		ft_toupper(int c)
 char	*ft_stolower(char *str)
 {
 	int		i;
-	char	*tmp;
 
 	i = ft_strlen(str);
-	tmp = ft_strnew(i);
 	while (i >= 0)
 	{
-		tmp[i] = ft_tolower(str[i]);
+		str[i] = ft_tolower(str[i]);
 		i--;
 	}
-	ft_strdel(&str);
-	return (tmp);
+	return (str);
 }

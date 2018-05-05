@@ -31,12 +31,13 @@ SRCS = ft_printf.c		\
 	   check_flags.c	\
 	   struct.c			\
 	   parser.c			\
-	   display_flags.c	\
+	   flags_digit.c	\
+	   flags_str.c		\
 	   ft_utoa_base.c	\
 	   ft_itoa_base.c	\
-	   conv_flags.c		\
 	   check_char.c		\
-	   conv_gen.c		\
+	   conv_digit.c		\
+	   conv_cs.c		\
 	   conv_majc.c		\
 	   exit_printf.c	\
 	   ft_strzerojoin.c	\

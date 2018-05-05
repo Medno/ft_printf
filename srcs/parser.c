@@ -12,6 +12,27 @@
 
 #include "ft_printf.h"
 
+void	put_in_struct(const char *f, int i, t_struct *s)
+{
+	char buf[i + 1];
+
+	ft_bzero(buf, i + 1);
+	ft_strncat(buf, f, i);
+	s->str = ft_strjoinzero(s->str, buf, s->len, i);
+}
+
+char	*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp)
+{
+	char *tmp;
+
+	if (conv == 'd' || conv == 'i' || conv == 'D')
+		tmp = conv_di(s, ap, conv);
+	else
+		tmp = conv_ouxx(s, ap, conv);
+	*len_tmp = ft_strlen(tmp);
+	return (tmp);
+}
+
 t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 {
 	char	*tmp;
@@ -59,15 +80,6 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 		s = check_conversion(format, i, s, ap);
 	}
 	(*i)++;
-}
-
-void	put_in_struct(const char *f, int i, t_struct *s)
-{
-	char buf[i + 1];
-
-	ft_bzero(buf, i + 1);
-	ft_strncat(buf, f, i);
-	s->str = ft_strjoinzero(s->str, buf, s->len, i);
 }
 
 void	parser(const char *format, va_list ap, t_struct *s)

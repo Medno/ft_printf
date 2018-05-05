@@ -43,8 +43,7 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	if (buf[0] != '\0')
 		res = ft_strjoin(buf, str);
 	else
-		return (str);
-	ft_strdel(&str);
+		return (ft_strdup(str));
 	return (res);
 }
 
@@ -200,6 +199,7 @@ char	*dis_width_digit(t_struct *s, char *str, char c, int pos)
 		field = display_field(s->len_field - len_fin, '0');
 		field = ft_strjoindel(field, str);
 		tmp = display_hex_oct(s, field, c, pos);
+		ft_strdel(&field);
 		s->flags += ~(F_HASHTAG & F_PLUS & F_SPACE);
 		return (tmp);
 	}
