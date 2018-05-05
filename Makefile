@@ -120,7 +120,7 @@ all: c_lib $(OPATH) $(NAME)
 re: fclean all
 
 $(OPATH)/%.o: $(SRCPATH)/%.c
-	$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $^
+	@$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $^
 	@echo " $(COL_GREEN)[OK]$(EOC)    $(COL_YELLOW)Compiling:$(EOC)" $<
 
 $(OPATH):

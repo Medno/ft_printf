@@ -55,6 +55,7 @@ void			init_struct(t_struct *s);
 void			reinit_struct(t_struct *s);
 
 char			*display_flags(t_struct *s, char *str, int pos);
+char			*display_field(int len_tmp, char to_print);
 char			*display_hex_oct(t_struct *s, char *str, char conv, int pos);
 char			*display_str(t_struct *s, char *tmp, int *len_tmp);
 char			*display_digit(t_struct *s, va_list ap, char conv, int *len);
@@ -68,7 +69,7 @@ char			*conv_majs(t_struct *s, va_list ap, int *len_tmp);
 char			*get_str(t_struct *s, va_list ap, int *len);
 char			*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c);
 
-void			put_in_struct(const char *f, int i, t_struct *s);
+void			put_in_struct(const char *f, t_struct *s, char *tmp, int len);
 char			*check_precision_str(t_struct *s, char *tmp);
 char			*check_precision_digit(t_struct *s, char *tmp, char c);
 char			*dis_width_digit(t_struct *s, char *str, char conv, int pos);
@@ -87,6 +88,7 @@ int				is_flag(char c);
 int				digit_conv(char c);
 
 char			*exit_printf(t_struct *s);
+char			*null_res(char *res);
 
 char			*ft_strjoinzero(char *s1, char *s2, int len1, int len2);
 //todel

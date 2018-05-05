@@ -61,10 +61,13 @@ char	*conv_majs(t_struct *s, va_list ap, int *len)
 	{
 		tmp = display_uni(s, *get);
 		if (!tmp)
-			return (NULL);
+			return (null_res(res));
 		len_tmp = ft_strlen(tmp);
 		if (preci > 0 && len_tmp > preci)
+		{
+			ft_strdel(&tmp);
 			break;
+		}
 		else if (preci > 0)
 			preci -= len_tmp;
 		res = ft_strjoindel(res, tmp);
@@ -72,8 +75,9 @@ char	*conv_majs(t_struct *s, va_list ap, int *len)
 		get++;
 	}
 	if (s->exit)
-		return (NULL);
+		return (null_res(res));
 	tmp = display_str(s, res, len);
+	ft_strdel(&res);
 	res = ft_strdup(tmp);
 	ft_strdel(&tmp);
 	return (res);
@@ -81,7 +85,6 @@ char	*conv_majs(t_struct *s, va_list ap, int *len)
 
 char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 {
-	//char			buf[2];
 	char			*res;
 	unsigned char	tmp;
 
@@ -90,7 +93,6 @@ char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 		tmp = (unsigned char)va_arg(ap, int);
 	else
 		tmp = c;
-//	res = display_char(s, tmp, len_tmp);
 	res = ft_put_in_str(res, (char)tmp);
 	res = display_char(s, res, len_tmp);
 	return (res);
@@ -98,11 +100,9 @@ char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)
 
 char	*display_char(t_struct *s, char *res, int *len_tmp)
 {
-//	char	*res;
 	char	*field;
 	int		len;
 
-	//len = (res[1] || res[0] || (!res[0] && s->len_field)) ? ft_strlen(res) : 1;
 	len = (res[0]) ? ft_strlen(res) : 1;
 	*len_tmp = (s->len_field && s->len_field > len) ? s->len_field : len;
 	if (!s->len_field)

@@ -17,3 +17,9 @@ char	*exit_printf(t_struct *s)
 	s->exit = 1;
 	return (NULL);
 }
+
+char	*null_res(char *res)
+{
+	ft_strdel(&res);
+	return (NULL);
+}
