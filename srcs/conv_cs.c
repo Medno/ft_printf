@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:53 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/04 16:16:30 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 11:42:08 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*display_str(t_struct *s, char *tmp, int *len)
 	char	*field;
 	int		len_s;
 
-	res = (!tmp && (*len = 6)) ? res = ft_strdup("(null)") : ft_strdup(tmp);
+	res = (!tmp) ? ft_strdup("(null)") : ft_strdup(tmp);
 	res = check_precision_str(s, res);
 	len_s = ft_strlen(res);
 	*len = (s->len_field > len_s) ? s->len_field : len_s;
@@ -44,43 +44,6 @@ char	*display_str(t_struct *s, char *tmp, int *len)
 	field = ft_strjoindel(field, res);
 	ft_strdel(&res);
 	return (field);
-}
-
-char	*conv_majs(t_struct *s, va_list ap, int *len)
-{
-	char	*res;
-	wchar_t	*get;
-	char	*tmp;
-	int		preci;
-	int		len_tmp;
-
-	get = va_arg(ap, wchar_t *);
-	res = get ? ft_strdup("") : NULL;
-	preci = s->precision;
-	while (get && *get && !s->exit && preci)
-	{
-		tmp = display_uni(s, *get);
-		if (!tmp)
-			return (null_res(res));
-		len_tmp = ft_strlen(tmp);
-		if (preci > 0 && len_tmp > preci)
-		{
-			ft_strdel(&tmp);
-			break;
-		}
-		else if (preci > 0)
-			preci -= len_tmp;
-		res = ft_strjoindel(res, tmp);
-		ft_strdel(&tmp);
-		get++;
-	}
-	if (s->exit)
-		return (null_res(res));
-	tmp = display_str(s, res, len);
-	ft_strdel(&res);
-	res = ft_strdup(tmp);
-	ft_strdel(&tmp);
-	return (res);
 }
 
 char	*get_char_va(t_struct *s, va_list ap, int *len_tmp, int c)

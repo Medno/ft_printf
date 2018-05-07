@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/26 10:31:31 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 11:52:33 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	int		len;
 	char	*res;
 
-	//len = (sign == -1) ? ft_strlen(t) + 1 : ft_strlen(t);
-//	last = ft_strdup(t);
 	last = check_precision_digit(s, t, c);
 	len = ft_strlen(last);
 	res = dis_width_digit(s, last, c, sign);
@@ -88,7 +86,11 @@ char	*conv_p(t_struct *s, va_list ap, int *len)
 	tmp = ft_stolower(tmp);
 	s->modif = F_L;
 	s->flags |= F_HASHTAG;
-	tmp = final_digit(s, tmp, 0, 'p');
+	if (s->flags & F_PLUS)
+		s->flags ^= F_PLUS;
+	if (s->flags & F_SPACE)
+		s->flags ^= F_SPACE;
+	tmp = (!p) ? final_digit(s, tmp, 0, 'p') : final_digit(s, tmp, 1, 'p');
 	*len = ft_strlen(tmp);
 	return (tmp);
 }

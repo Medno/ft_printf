@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:42:01 by exam              #+#    #+#             */
-/*   Updated: 2018/04/23 17:43:17 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 12:05:56 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,34 @@ int		nb_char_u(uintmax_t n, int base)
 	return (compt);
 }
 
+void	put_in_base(char base[])
+{
+	base[0] = '0';
+	base[1] = '1';
+	base[2] = '2';
+	base[3] = '3';
+	base[4] = '4';
+	base[5] = '5';
+	base[6] = '6';
+	base[7] = '7';
+	base[8] = '8';
+	base[9] = '9';
+	base[10] = 'A';
+	base[11] = 'B';
+	base[12] = 'C';
+	base[13] = 'D';
+	base[14] = 'E';
+	base[15] = 'F';
+	base[16] = '\0';
+}
+
 char	*ft_utoa_base(uintmax_t value, int base)
 {
 	int		nb_c;
 	char	*res;
-	char	labase[] = "0123456789ABCDEF";
+	char	labase[17];
 
+	put_in_base(labase);
 	nb_c = nb_char_u(value, base);
 	if (value == 0)
 		return (ft_strdup("0"));

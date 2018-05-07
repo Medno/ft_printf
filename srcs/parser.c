@@ -6,13 +6,13 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:21:20 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/27 16:45:29 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 13:01:51 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	put_in_struct(const char *f, t_struct *s, char *tmp, int len_tmp)
+void		put_in_struct(const char *f, t_struct *s, char *tmp, int len_tmp)
 {
 	char buf[s->eoc + 1];
 
@@ -24,7 +24,7 @@ void	put_in_struct(const char *f, t_struct *s, char *tmp, int len_tmp)
 	s->len += len_tmp;
 }
 
-char	*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp)
+char		*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp)
 {
 	char *tmp;
 
@@ -64,13 +64,13 @@ t_struct	*check_conversion(const char *f, int *i, t_struct *s, va_list ap)
 	return (s);
 }
 
-void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
+void		treat_format(const char *format, int *i, t_struct *s, va_list ap)
 {
 	(*i)++;
 	while (format[*i] && (is_flag(format[*i]) || ft_isdigit(format[*i])))
 	{
 		s = check_flags(format, i, s);
-		s = (format[*i] != '0') ? field_preci(format, i, s) : s;
+		s = (format[*i] != '0') ? field_preci(format, i, s, ap) : s;
 		(*i)++;
 	}
 	s = last_check(s, format[*i]);
@@ -80,11 +80,11 @@ void	treat_format(const char *format, int *i, t_struct *s, va_list ap)
 		s = check_conversion(format, i, s, ap);
 	}
 	else
-		return;
+		return ;
 	(*i)++;
 }
 
-void	parser(const char *format, va_list ap, t_struct *s)
+void		parser(const char *format, va_list ap, t_struct *s)
 {
 	int	i;
 
@@ -100,7 +100,7 @@ void	parser(const char *format, va_list ap, t_struct *s)
 			reinit_struct(s);
 		}
 		else if (format[i] && format[i] == '%' && !format[i + 1])
-			break;
+			break ;
 		else
 			i++;
 	}

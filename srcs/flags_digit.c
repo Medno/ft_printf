@@ -6,19 +6,11 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:11:31 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/04 15:43:29 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 13:02:55 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void		put_in_buffer(char buf[], char c)
-{
-	int	len;
-
-	len = ft_strlen(buf);
-	buf[len] = c;
-}
 
 char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 {
@@ -31,7 +23,8 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 	if ((s->flags & F_HASHTAG && (c == 'x' || c == 'X') && pos) || c == 'p')
 	{
 		put_in_buffer(buf, '0');
-		(c == 'x' || c == 'p') ? put_in_buffer(buf, 'x') : put_in_buffer(buf, 'X');
+		(c == 'x' || c == 'p') ?
+			put_in_buffer(buf, 'x') : put_in_buffer(buf, 'X');
 	}
 	if (!ft_strchr("xXOouU", c))
 	{
@@ -89,10 +82,11 @@ int		dis_len(t_struct *s, char *str, char c, int pos)
 {
 	int		len;
 	int		len_fin;
-	
+
 	len = ft_strlen(str);
-	len = ((s->flags & F_HASHTAG) && (c == 'x' || c == 'X') && pos) ?
-		len + 2 : len;
+	len = (c == 'p' ||
+		((s->flags & F_HASHTAG) && (c == 'x' || c == 'X') && pos))
+		? len + 2 : len;
 	len = ((s->flags & F_HASHTAG) && (c == 'o' || c == 'O') && pos) ?
 		len + 1 : len;
 	len = ((pos == -1 || (s->flags & F_PLUS)) &&

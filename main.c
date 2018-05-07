@@ -32,7 +32,6 @@ printf("------------- Test des digit : -------------\n");
 
 //	res =    printf("010#+Real [%010#+x] ", -0); printf("Res : [%d]\n", res);
 	res = ft_printf("010#+Mine [%010#+x] ", -0);// printf("Res : [%d]\n", res);
-while (1) ft_putchar('\0');
 
 printf("Octal :\n");
 	res =    printf("Real [%o] ", -42); printf("Res : [%d]\n", res);
@@ -216,5 +215,11 @@ ft_printf("mine : [%36lc]\n", (char)256);
 	s[3] = '\0';
    printf("Real : [%d]\n",    printf("%.5ls\n", 0));
 ft_printf("Mine : [%d]\n", ft_printf("%.5ls\n", 0));
+
+   printf("Real: {%05p}\n", 0);
+ft_printf("Mine: {%05p}\n", 0);
+
+   printf("Real : [% p|%+p]\n", 42, 42);
+ft_printf("Mine : [% p|%+p]\n", 42, 42);
 
 }

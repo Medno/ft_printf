@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:10:04 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/04/27 14:21:52 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 13:02:02 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ void	reinit_struct(t_struct *s)
 	s->precision = -1;
 	s->len_field = 0;
 	s->modif = 0;
+}
+
+void	put_in_buffer(char buf[], char c)
+{
+	int	len;
+
+	len = ft_strlen(buf);
+	buf[len] = c;
 }

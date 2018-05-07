@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:42:01 by exam              #+#    #+#             */
-/*   Updated: 2018/04/23 18:10:05 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/07 12:06:45 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ char			*ft_itoa_base(intmax_t value, int base)
 {
 	int		nb_c;
 	char	*res;
-	char	labase[] = "0123456789ABCDEF";
+	char	labase[17];
 
+	put_in_base(labase);
 	nb_c = nb_char(value, base);
 	if (value == 0)
 		return (ft_strdup("0"));
