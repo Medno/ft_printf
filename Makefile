@@ -6,9 +6,13 @@
 #    By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 14:57:58 by pchadeni          #+#    #+#              #
-#    Updated: 2018/05/07 18:36:58 by pchadeni         ###   ########.fr        #
+#    Updated: 2018/05/09 10:05:38 by pchadeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#------Name of the project------#
+
+NAME = libftprintf.a
 
 #------Compilation's flags------#
 
@@ -29,10 +33,6 @@ endif
 ifeq ($(SAN),yes)
 FLAGS += -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 endif
-
-#------Name of the project------#
-
-NAME = libftprintf.a
 
 #------All sources------#
 
@@ -108,23 +108,25 @@ LIB_FILES = ft_atoi.c	\
 
 #------Path------#
 
-OPATH = obj
-LIB_PATH = libft
 SRCS_PATH = srcs
-SRCS_LIB    += $(addprefix $(LIB_PATH)/, $(LIB_FILES))
-SRCS_PRINTF += $(addprefix $(SRCS_PATH)/, $(FTPRINTF))
+OBJ_PATH  = obj
+LIB_PATH  = libft
+FTPRINTF_PATH = ft_printf
+SRCS_LIB    += $(addprefix      $(LIB_PATH)/, $(LIB_FILES))
+SRCS_PRINTF += $(addprefix $(FTPRINTF_PATH)/, $(FTPRINTF))
 
-SRCS += $(SRCS_LIB)
-SRCS += $(SRCS_PRINTF)
+SRCS += $(addprefix $(SRCS_PATH)/, $(SRCS_LIB))
+SRCS += $(addprefix $(SRCS_PATH)/, $(SRCS_PRINTF))
 
-OBJP += $(addprefix ./$(OPATH)/, $(LIB_PATH))
-OBJP += $(addprefix ./$(OPATH)/, $(SRCS_PATH))
+OBJP += $(addprefix ./$(OBJ_PATH)/, $(LIB_PATH))
+OBJP += $(addprefix ./$(OBJ_PATH)/, $(FTPRINTF_PATH))
 
-OBJ += $(addprefix ./$(OPATH)/, $(SRCS:.c=.o))
+OBJ += $(addprefix ./$(OBJ_PATH)/, $(SRCS_LIB:.c=.o))
+OBJ += $(addprefix ./$(OBJ_PATH)/, $(SRCS_PRINTF:.c=.o))
 
 #------Main rules------#
 
-all: $(OPATH) $(NAME)
+all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Start making $(NAME)..."
@@ -132,19 +134,19 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(BOLD_GREEN)$(NAME) created ✓$(EOC)"
 
-$(OPATH):
+$(OBJ_PATH):
 	@echo "Start creating obj folder..."
-	@mkdir -p $(OPATH)
-	@echo "$(OPATH) created"
+	@mkdir -p $(OBJ_PATH)
+	@echo "$(OBJ_PATH) created"
 	@mkdir -p $(OBJP)
 	@echo "$(OBJP) created"
 
-$(OPATH)/%.o: %.c
+$(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c
 	@$(CC) $(FLAGS) $(C_FLAGS) $(INC) -o $@ -c $<
 	@echo " $(COL_GREEN)[OK]$(EOC)    $(COL_YELLOW)Compiling:$(EOC)" $<
 
 clean:
-	@rm -Rf $(OPATH)
+	@rm -Rf $(OBJ_PATH)
 	@echo "$(BOLD_GREEN)$(NAME) clean ✓$(EOC)"
 
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/07 18:29:43 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/09 10:04:16 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <wchar.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 			#include <stdio.h>
 # define F_HASHTAG	1
