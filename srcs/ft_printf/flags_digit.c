@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:11:31 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/07 13:02:55 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:31:02 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*display_hex_oct(t_struct *s, char *str, char c, int pos)
 		(c == 'x' || c == 'p') ?
 			put_in_buffer(buf, 'x') : put_in_buffer(buf, 'X');
 	}
-	if (!ft_strchr("xXOouU", c))
+	if (!ft_strchr("bxXOouU", c))
 	{
 		(s->flags & F_PLUS && pos >= 0) ? put_in_buffer(buf, '+') : 0;
 		(pos == -1) ? put_in_buffer(buf, '-') : 0;

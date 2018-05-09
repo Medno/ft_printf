@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/07 11:52:33 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:28:40 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_utoa_base(res, 16);
 	else if (c == 'o' || c == 'O')
 		tmp = ft_utoa_base(res, 8);
+	else if (c == 'b')
+		tmp = ft_utoa_base(res, 2);
 	else
 		tmp = ft_utoa_base(res, 10);
 	if (c == 'x' && tmp)
