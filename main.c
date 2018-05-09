@@ -222,4 +222,7 @@ ft_printf("Mine: {%05p}\n", 0);
    printf("Real : [% p|%+p]\n", 42, 42);
 ft_printf("Mine : [% p|%+p]\n", 42, 42);
 
+ft_printf("Mine : [% b]\n", 42);
+ft_printf("Mine : [%42 b]\n", 100000);
+ft_printf("Mine : [%6.50 b]\n", 100000);
 }
