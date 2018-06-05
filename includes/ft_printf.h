@@ -20,7 +20,6 @@
 # include <wchar.h>
 # include "libft.h"
 
-			#include <stdio.h>
 # define F_HASHTAG	1
 # define F_ZERO		2
 # define F_MINUS	4

@@ -40,7 +40,8 @@ char	*conv_di(t_struct *s, va_list ap, char c)
 	res = (s->modif == F_J) ? (intmax_t)res : res;
 	res = (s->modif == F_Z) ? (ssize_t)res : res;
 	res = (!s->modif) ? (int)res : res;
-	tmp = ft_itoa_base(res, 10);
+	if (!(tmp = ft_itoa_base(res, 10)))
+		return (NULL);
 	if (res > 0)
 		sign = 1;
 	else
@@ -72,6 +73,8 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 		tmp = ft_utoa_base(res, 2);
 	else
 		tmp = ft_utoa_base(res, 10);
+	if (!tmp)
+		return (NULL);
 	if (c == 'x' && tmp)
 		tmp = ft_stolower(tmp);
 	tmp = (!res) ? final_digit(s, tmp, 0, c) : final_digit(s, tmp, 1, c);
@@ -84,7 +87,8 @@ char	*conv_p(t_struct *s, va_list ap, int *len)
 	char		*tmp;
 
 	p = va_arg(ap, uintmax_t);
-	tmp = ft_utoa_base(p, 16);
+	if (!(tmp = ft_utoa_base(p, 16)))
+		return (NULL);
 	tmp = ft_stolower(tmp);
 	s->modif = F_L;
 	s->flags |= F_HASHTAG;

@@ -78,8 +78,6 @@ char		*conv_majs(t_struct *s, va_list ap, int *len)
 
 	get = va_arg(ap, wchar_t *);
 	tmp = cat_each_uni(s, get);
-	if (!tmp)
-		return (NULL);
 	if (s->exit)
 		return (null_res(tmp));
 	res = display_str(s, tmp, len);

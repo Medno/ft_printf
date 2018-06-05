@@ -32,7 +32,8 @@ char		*display_digit(t_struct *s, va_list ap, char conv, int *len_tmp)
 		tmp = conv_di(s, ap, conv);
 	else
 		tmp = conv_ouxx(s, ap, conv);
-	*len_tmp = ft_strlen(tmp);
+	if (tmp)
+		*len_tmp = ft_strlen(tmp);
 	return (tmp);
 }
 
