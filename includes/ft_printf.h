@@ -6,7 +6,7 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:33:42 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/09 10:04:16 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:23:00 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,4 @@ char			*exit_printf(t_struct *s);
 char			*null_res(char *res);
 
 char			*ft_strjoinzero(char *s1, char *s2, int len1, int len2);
-//todel
-void	print_flag(t_struct s);
 #endif

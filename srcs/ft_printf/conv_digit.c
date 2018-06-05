@@ -6,13 +6,13 @@
 /*   By: pchadeni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:17:02 by pchadeni          #+#    #+#             */
-/*   Updated: 2018/05/09 13:28:40 by pchadeni         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:25:03 by pchadeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*final_digit(t_struct *s, char *t, int sign, char c)
+char		*final_digit(t_struct *s, char *t, int sign, char c)
 {
 	char	*last;
 	int		len;
@@ -26,7 +26,7 @@ char	*final_digit(t_struct *s, char *t, int sign, char c)
 	return (res);
 }
 
-char	*conv_di(t_struct *s, va_list ap, char c)
+char		*conv_di(t_struct *s, va_list ap, char c)
 {
 	intmax_t	res;
 	char		*tmp;
@@ -50,7 +50,24 @@ char	*conv_di(t_struct *s, va_list ap, char c)
 	return (tmp);
 }
 
-char	*conv_ouxx(t_struct *s, va_list ap, char c)
+static char	*get_base(uintmax_t nb, char c)
+{
+	char	*tmp;
+
+	if (!nb)
+		tmp = ft_strdup("0");
+	else if (c == 'x' || c == 'X')
+		tmp = ft_utoa_base(nb, 16);
+	else if (c == 'o' || c == 'O')
+		tmp = ft_utoa_base(nb, 8);
+	else if (c == 'b')
+		tmp = ft_utoa_base(nb, 2);
+	else
+		tmp = ft_utoa_base(nb, 10);
+	return (tmp);
+}
+
+char		*conv_ouxx(t_struct *s, va_list ap, char c)
 {
 	uintmax_t	res;
 	char		*tmp;
@@ -63,16 +80,7 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 	res = (s->modif == F_J) ? (uintmax_t)res : res;
 	res = (s->modif == F_Z) ? (size_t)res : res;
 	res = (!s->modif) ? (unsigned int)res : res;
-	if (!res)
-		tmp = ft_strdup("0");
-	else if (c == 'x' || c == 'X')
-		tmp = ft_utoa_base(res, 16);
-	else if (c == 'o' || c == 'O')
-		tmp = ft_utoa_base(res, 8);
-	else if (c == 'b')
-		tmp = ft_utoa_base(res, 2);
-	else
-		tmp = ft_utoa_base(res, 10);
+	tmp = get_base(res, c);
 	if (!tmp)
 		return (NULL);
 	if (c == 'x' && tmp)
@@ -81,7 +89,7 @@ char	*conv_ouxx(t_struct *s, va_list ap, char c)
 	return (tmp);
 }
 
-char	*conv_p(t_struct *s, va_list ap, int *len)
+char		*conv_p(t_struct *s, va_list ap, int *len)
 {
 	uintmax_t	p;
 	char		*tmp;
