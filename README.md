@@ -1,13 +1,26 @@
 # ft_printf
 
-Projet de l'Ecole 42, branche algorithmique.
+42 school project: recoding of the printf function (libc)
 
-Recodage de la fonction printf de la librairie C.
+## Setup
+
+Launch the Makefile command in the root repository : make
+
+When libftprintf.a is ready, you can use ft_printf as printf, compiling with gcc : `-L'path to libftprintf.a' -lftprintf`.
+
+### Prototypes
+
+```c
+int ft_printf(const char *format, ...);
+int ft_dprintf(int fd, const char *format, ...);
+```
+
+### Feature
 
 Conversions:
-  - Numériques : dDioOuUxXp b(conversion binaire)
-  - Litterales : cCsS
+  - Numerical : dDioOuUxXp b(binary conversion)
+  - Literal : cCsS
 
-Flags de conversion: h, hh, l, ll, j, z
+Conversion flags : h, hh, l, ll, j, z
 
-Flags de formatage: #0-+*
+Format flags : #0-+*
